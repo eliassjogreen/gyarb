@@ -1,3 +1,7 @@
+---
+bibliography: report/citations.bib
+---
+
 # Bakgrund och fakta
 
 ## Block- och flödesprogrammering
@@ -11,16 +15,16 @@ utbildningssyfte och fungerar på sätt att de består utav block, liknande dom 
 Lego. Blocken kan ha olika funktioner som till exempel värden, uttryck eller
 olika satser. Man bygger ett program genom att koppla ihop dessa block i en
 specialbyggd programmeringsmiljö. De kändaste och mest använda
-programmeringsspråket implementerat på detta vis är Scratch (Scratch Foundation,
-2021), originellt utvecklat av MIT senare Scratch Foundation. Detta språk
-utvecklades i utbildningssyfte med översättning och lättanvändning i åtanke och
-dess målgrupp är framförallt grundskolebarn.
+programmeringsspråket [@scratch_statistics] implementerat på detta vis är Scratch [@scratch_about],
+originellt utvecklat av MIT senare Scratch Foundation. Detta språk utvecklades i
+utbildningssyfte med översättning och lättanvändning i åtanke och dess målgrupp
+är framförallt grundskolebarn.
 
 Flödes- eller nodbaserade programmeringsspråk är egentligt på många sätt lika de
 block baserade i att dem använder sig utav visuella block. I ett
 flödesbaseratpråk är dock dessa block inte sekventiella utan ihopkopplade med
 sladdar som representerar ett värdes flöde genom programmet. Spelmotorer som
-Unreal, Unity och Godot samt 3d modelleringsprogram som Blender använder sig av
+Unreal [@unreal_scripting], Unity [@unity_scripting] och Godot [@godot_scripting] samt 3d modelleringsprogram som Blender [@blender_scripting] använder sig av
 nodbaserad programmering för ett enklare alternativ till traditionell
 textbaserad programmering. Detta alternativ är likt blockprogrammering i det att
 etiketterna och texterna på noderna är översättningsbara.
@@ -70,12 +74,6 @@ kunna existera i samma program samt det faktum att språket inte är byggt med
 ## Körning
 
 ## Källförtäckning
-
-Scratch Foundation. (2021, Oktober 15). Scratch - About. Hämtad från Scratch:
-<https://scratch.mit.edu/about>
-
-Scratch Foundation. (2021, Oktober 15). Scratch Statistics - Imagine, Program,
-Share. Hämtad från Scratch: <https://scratch.mit.edu/statistics/>
 
 Maloney, J., Resnick, M., Rusk, N., Silverman, B., & Eastmond, E. (2010). The
 Scratch Programming Language and Environment. ACM Transactions on Computing
