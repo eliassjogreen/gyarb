@@ -1,1 +1,0 @@
-pandoc -s --csl=https://www.zotero.org/styles/apa --citeproc -o report.docx report/bakgrund_och_fakta.md
