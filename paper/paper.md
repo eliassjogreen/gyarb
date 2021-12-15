@@ -1,5 +1,13 @@
 ---
 lang: sv-SE
+info: |
+  Anna Whitlocks Gymnasium
+
+  Teknikprogrammet inriktning design och produktutveckling
+
+  Läsåret 2021/2022
+
+  Handledare: Sofie Danielsson
 title: En intresseväckande och relevant huvudrubrik
 subtitle: En informativ underrubrik
 author: Elias Sjögreen
@@ -20,6 +28,20 @@ documentclass: report
 # Inledning
 
 # Bakgrund
+
+## Begreppslista
+
+**Maskinkod**
+
+**Program, datorprogram**
+
+**Källkod**
+
+**Naturligt språk**
+
+**Programmeringspråk**
+
+**Integrerad utvecklingsmiljö**
 
 ## Programmeringsspråk
 
@@ -88,7 +110,7 @@ tanke på den statistik som finns kring den växande IT branschen.].
 I ett programmeringsspråk där översättning till andra språk prioriteras finns
 det ett antal olika tillvägagångssätt, alla med olika för- och nackdelar.
 
-Block programmering bland det vanligaste av de olika typerna av
+Blockprogrammering är bland det vanligaste av de olika typerna av
 översättningsbara programmeringsspråk. Dessa språk är ofta till för
 utbildningssyfte och fungerar på sätt att de består utav block, liknande dom i
 Lego. Blocken kan ha olika funktioner som till exempel värden, uttryck eller
@@ -99,9 +121,9 @@ Scratch [@scratch_about], originellt utvecklat av MIT senare Scratch Foundation.
 Detta språk utvecklades i utbildningssyfte med översättning och lättanvändning i
 åtanke och dess målgrupp är framförallt grundskolebarn.
 
-Flödes- eller nodbaserade programmeringsspråk är egentligt på många sätt lika de
-block baserade i att dem använder sig utav visuella block. I ett
-flödesbaseratpråk är dock dessa block inte sekventiella utan ihopkopplade med
+Flödesprogrammeringsspråk är egentligt på många sätt lika de block baserade
+programmeringsspråk i att dem använder sig utav visuella block. I ett
+flödesbaserat språk är dock dessa block inte sekventiella utan ihopkopplade med
 sladdar som representerar ett värdes flöde genom programmet. Spelmotorer som
 Unreal [@unreal_scripting], Unity [@unity_scripting] och Godot
 [@godot_scripting] samt 3d modelleringsprogram som Blender [@blender_scripting]
@@ -110,19 +132,15 @@ traditionell textbaserad programmering. Detta alternativ är likt
 blockprogrammering i det att etiketterna och texterna på noderna är
 översättningsbara.
 
-Problemet som uppkommer för både flödes- och blockbaserad programmering är det
-att dom kräver en integrerad utvecklingsmiljö så som en hemsida för Scratch
-eller respektive programs skrivbordsapplikation för Unreal, Unity, Godot och
-Blender. Att utveckla en integrerad utvecklingsmiljö utöver ett
-programmeringsspråk och dess beståndsdelar skulle utgöra ytterligare problem och
-är egentligen utanför projektets omfattning.
-
 ## Textprogrammering
 
 Ett annat alternativ till visuella programmeringsspråk så som de block- och
 flödesbaserade språken tidigare nämnda är ett mer traditionellt textbaserat
-språk. Det finns många textbaserat programmeringsspråk och dom flesta är
-textbaserade men väldigt få uppfyller kravet att vara översättningsbart.
+språk. Det finns många textbaserade programmeringsspråk varav dom flesta är av
+den typen men väldigt få uppfyller kravet att vara översättningsbart. Vad som
+menas med ett textbaserat programmeringsspråk är ett språk varav programmen
+består utav vanliga tecken och bokstäver men som följer en viss grammatik och
+syntax, likt hur naturliga språk också följer en grammatik.
 
 Ett tidigt exempel på ett översättningsbart programmeringsspråk är det av ALGOL
 68 [@wikipedia_algol_68]. Detta språk standardiserades
@@ -163,15 +181,23 @@ ett naturligt språk. Ett exempel på ett sådant språk är exempelvis APL
 
 ## Ett programmeringsspråks uppbyggnad
 
-Ett programmeringsspråk består internt utav ett antal olika delar. Det kan se
-olika ut för olika språk och tillvägagångssätt men generellt delar man in det i
-tre större delar: lexikalanalys [@nationalencyklopedin_lexikalanalys],
-syntaxanalys [@nationalencyklopedin_syntaxanalys] och till sist kompilation
+Ett programmeringsspråk är egentligen i sig ett datorprogram vars uppgift är att
+översätta en viss inmatning till ett program som datorn kan köra. Detta görs
+genom att dela upp uppgiften i ett antal olika delar. Det kan se olika ut för
+olika språk och tillvägagångssätt men generellt delar man in det i tre större
+delar: lexikalanalys [@nationalencyklopedin_lexikalanalys], syntaxanalys
+[@nationalencyklopedin_syntaxanalys] och till sist kompilation
 [@nationalencyklopedin_kompilator] eller interpration
 [@nationalencyklopedin_interpretator]. Man har programmerat dessa delar i ett
 annat^[Eller samma, se @wikipedia_self_hosting] programmeringsspråk vilket har
 skapat ett program som kan genomföra till exempel lexikalanalys, syntax analys
 och till sist kompilation för att sedan producera det slutgiltiga programmet.
+
+### Lexikalanalys
+
+### Syntaxanalys
+
+### Kompilation eller interpretation
 
 Lexikalanalysen är oftast första steget i programmet och delar upp och
 klassificerar källkoden till en lista utav lexikala element så som nyckelord,
@@ -194,6 +220,18 @@ instruktionerna angivna datastrukturen.
 ## Frågeställning
 
 # Metod
+
+## Val av programmeringsspråkstyp
+
+I valet av programmeringsspråkstyp finns det flera olika alternativ som på olika
+sätt uppnår det konstaterade målet.
+
+Problemet som uppkommer för både flödes- och blockbaserad programmering är det
+att dom kräver en integrerad utvecklingsmiljö så som en hemsida för Scratch
+eller respektive programs skrivbordsapplikation för Unreal, Unity, Godot och
+Blender. Att utveckla en integrerad utvecklingsmiljö utöver ett
+programmeringsspråk och dess beståndsdelar skulle utgöra ytterligare problem och
+är egentligen utanför projektets omfattning.
 
 # Genomförande
 
