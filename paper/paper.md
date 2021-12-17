@@ -27,21 +27,57 @@ documentclass: report
 
 # Inledning
 
+Datorprogrammering har gått från att vara en nisch skicklighet till något fler
+och fler människor lär sig, för jobb och som en hobby. Industrin och den globala
+efterfrågan för programmerare ökar i takt med internet och i princip all
+teknologi, från din mikrovågsugn till dator till det komplexa system som styr
+exempelvis elnätet. Detta är inte heller något lokalt fenomen, digitaliseringen
+är global men majoriteten av programmeringsspråken som är ett väsentligt verktyg
+för denna teknologiska utveckling är fortfarande begränsade utav en språkbarriär
+då de flesta programmeringsspråk använder sig utav Engelskan. Denna rapport
+undersöker möjligheten att skapa en specifikation samt prototyp utav ett
+programmeringsspråk med mål att vara översättningsbart mellan olika naturliga
+språk i utbildningsyfte.
+
 # Bakgrund
 
 ## Begreppslista
 
-**Maskinkod**
+**Programmeringspråk** eller **programspråk** är en representation i text eller
+visuellt utav de instruktioner som man önskar ska kompileras för att sedan
+köras, antingen som maskinkod, mellanrepresentation eller tolkas i en
+interpretator.
 
-**Program, datorprogram**
+**Maskinkod** är den binära kod, bestående av olika instruktioner som en dator
+direkt kan tolka och genomföra.
 
-**Källkod**
+**Plattformsoberoende kod** eller **mellanrepresentation** är en typ av kod som
+kan köras på en virtuell maskin på datorn istället för att köras direkt på
+datorn genom maskinkod.
 
-**Naturligt språk**
+**Källkod** eller **källprogram** är ett datorprogram representerat som det
+programmeringsspråk det från början var skrive i.
 
-**Programmeringspråk**
+**Program** eller **datorprogram** är vilket som helst program som en dator kan
+tolka och genomföra. Detta innefattar maskinkod men även källkod och olika typer
+utav plattformsoberoende kod.
 
-**Integrerad utvecklingsmiljö**
+**Virtuell maskin** är en virtuell dator som i programmeringssyfte används för
+att skapa en miljö där plattformsoberoende kod eller olika
+mellanrepresentationer kan köras så som om dess kod var äkta maskinkod.
+
+**Interpretator** eller **programtolk** är ett datorprogram som tolkar och
+genomför de instruktioner som beskrivs i programmet direkt utan översättning
+eller kompilation till maskinkod eller någon mellanrepresentation.
+
+**Kompilator** är ett datorprogram som kan översätta ett program skrivet i
+källkod till datorprogram som går att köra representerade som maskinkod eller
+olika mellanrepresentationer.
+
+**Integrerad utvecklingsmiljö** är ett datorprogram som innehåller ett antal
+olika verktyg för att arbeta med exempelvis programmering. Detta kan inkludera
+exempelvis en textredigerare, visuell programmeringsmiljö och en kompilator
+eller interpretator.
 
 ## Programmeringsspråk
 
@@ -215,9 +251,11 @@ instruktionerna angivna datastrukturen.
 
 # Syfte och Frågeställning
 
-## Syfte
-
-## Frågeställning
+Målet med projektet är att utveckla ett prototypprogram samt specifikation utav
+ett programmeringsspråk. Denna prototyp skall vara översättningsbart och
+lättförståeligt. Syftet med detta är för att undersöka möjligheten och olika
+tillvägagångssätt för att skapa ett programmeringsspråk som går att översätta
+till olika språk och fortfarande vara enkelt att förstå.
 
 # Metod
 
