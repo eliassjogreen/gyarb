@@ -17,7 +17,7 @@ abstract: |
   \pagebreak
 
 csl: https://www.zotero.org/styles/apa
-bibliography: biblio.bib
+bibliography: paper/biblio.bib
 toc: true
 toc-title: Innehållsförteckning
 documentclass: report
@@ -78,6 +78,12 @@ olika mellanrepresentationer.
 olika verktyg för att arbeta med exempelvis programmering. Detta kan inkludera
 exempelvis en textredigerare, visuell programmeringsmiljö och en kompilator
 eller interpretator.
+
+**Datastruktur**
+
+**Typning**
+
+---
 
 ## Programmeringsspråk
 
@@ -196,6 +202,13 @@ alla olika naturliga språk som Citrine stödjer publiceras som separata program
 utan vetskapen om hur man skulle översätta ett program från ett till ett annat
 naturligt språk.
 
+| Skriftspråk         | Exempelkod                        |
+| ------------------- | --------------------------------- |
+| Engelska            | `✎ write: ‘Hello World’, stop.`   |
+| Svenska             | `✎ skriva: ‘Hej Världen’, sluta.` |
+| Förenklad Kinesiska | `✎ 写：__: ‘你好世界’, _停.`      |
+| Hindi               | `✎ लिखना: ‘नमस्ते दुनिया’, रोकना।.` |
+
 Scheme [@scheme_2003] är ännu ett standardiserat programmeringsspråk med
 möjlighet till internationalisation. Detta är dock inte en kärnfunktion i
 språket utan har istället utvecklats av användare som har använt språkets
@@ -205,6 +218,12 @@ program att vara flerspråkiga. Detta leder dock till den nackdelen att språket
 ej enkelt kan översättas då flera olika språk skulle kunna existera i samma
 program samt det faktum att språket inte är byggt med översättning, lokalisation
 eller internationalisation som en kärnfunktion.
+
+| Skriftspråk | Exempelkod                  |
+| ----------- | --------------------------- |
+| Engelska    | `(display "Hello world")`   |
+| Svenska     | `(visa "Hej Världen")`      |
+| Bosniska    | `(prikaži "Zdravo Svjete")` |
 
 ## Symbolprogrammering
 
@@ -246,6 +265,14 @@ kan denna datastruktur producerad utav syntaxanalysen, ofta ett abstrakt eller
 konkret syntaxträd [@nationalencyklopedin_trad] kompileras, det vill säga
 konverteras till maskinkod eller interpreteras, det vill säga tolka och utföra
 instruktionerna angivna datastrukturen.
+
+### Värderepresentation
+
+### Typsystem
+
+#### Statisk typning
+
+#### Dynamisk typning
 
 \pagebreak
 
