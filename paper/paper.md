@@ -79,7 +79,9 @@ olika verktyg för att arbeta med exempelvis programmering. Detta kan inkludera
 exempelvis en textredigerare, visuell programmeringsmiljö och en kompilator
 eller interpretator.
 
-**Datastruktur**
+**Datastruktur** är en abstraktion utav flera olika datavärden så som exempelvis
+en lista, ett träd eller en tabell. Detta görs för att datorn effektivt skall
+kunna arbeta med icke-primitiva datavärden och för att förenkla användandet.
 
 **Typning**
 
@@ -202,11 +204,11 @@ alla olika naturliga språk som Citrine stödjer publiceras som separata program
 utan vetskapen om hur man skulle översätta ett program från ett till ett annat
 naturligt språk.
 
-| Skriftspråk         | Exempelkod                        |
-| ------------------- | --------------------------------- |
-| Engelska            | `✎ write: ‘Hello World’, stop.`   |
-| Svenska             | `✎ skriva: ‘Hej Världen’, sluta.` |
-| Förenklad Kinesiska | `✎ 写：__: ‘你好世界’, _停.`      |
+| Skriftspråk         | Exempelkod                          |
+| ------------------- | ----------------------------------- |
+| Engelska            | `✎ write: ‘Hello World’, stop.`     |
+| Svenska             | `✎ skriva: ‘Hej Världen’, sluta.`   |
+| Förenklad Kinesiska | `✎ 写：__: ‘你好世界’, _停.`               |
 | Hindi               | `✎ लिखना: ‘नमस्ते दुनिया’, रोकना।.` |
 
 Scheme [@scheme_2003] är ännu ett standardiserat programmeringsspråk med
