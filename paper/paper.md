@@ -18,6 +18,7 @@ abstract: |
 
 csl: https://www.zotero.org/styles/apa
 bibliography: paper/biblio.bib
+reference-section-title: Källförtäckning
 toc: true
 toc-title: Innehållsförteckning
 documentclass: report
@@ -201,12 +202,11 @@ alla olika naturliga språk som Citrine stödjer publiceras som separata program
 utan vetskapen om hur man skulle översätta ett program från ett till ett annat
 naturligt språk.
 
-| Skriftspråk         | Exempelkod                          |
-| ------------------- | ----------------------------------- |
-| Engelska            | `✎ write: ‘Hello World’, stop.`     |
-| Svenska             | `✎ skriva: ‘Hej Världen’, sluta.`   |
-| Förenklad Kinesiska | `✎ 写：__: ‘你好世界’, _停.`               |
-| Hindi               | `✎ लिखना: ‘नमस्ते दुनिया’, रोकना।.` |
+| Skriftspråk | Exempelkod                       |
+| ----------- | -------------------------------- |
+| Engelska    | `write: ‘Hello World’, stop.`    |
+| Svenska     | `skriva: ‘Hej Världen’, sluta.`  |
+| Tyska       | `schreiben: ‘Hallo Welt’, stop.` |
 
 Scheme [@scheme_2003] är ännu ett standardiserat programmeringsspråk med
 möjlighet till internationalisation. Detta är dock inte en kärnfunktion i
@@ -218,11 +218,11 @@ ej enkelt kan översättas då flera olika språk skulle kunna existera i samma
 program samt det faktum att språket inte är byggt med översättning, lokalisation
 eller internationalisation som en kärnfunktion.
 
-| Skriftspråk | Exempelkod                  |
-| ----------- | --------------------------- |
-| Engelska    | `(display "Hello world")`   |
-| Svenska     | `(visa "Hej Världen")`      |
-| Bosniska    | `(prikaži "Zdravo Svjete")` |
+| Skriftspråk | Exempelkod                |
+| ----------- | ------------------------- |
+| Engelska    | `(display "Hello World")` |
+| Svenska     | `(visa "Hej Världen")`    |
+| Tyska       | `(anzeige "Hallo Welt")`  |
 
 ## Symbolprogrammering
 
@@ -269,6 +269,11 @@ innebär vanligtvis att dessa lexikala element analyseras utifrån en formell
 grammatik för att producera en datastruktur som representerar programmets
 uppbyggnad samt validerar språkets grammatik.
 
+Vanligtvis så skapar syntaxanalysen ett syntaxträd som representerar programmets
+uppbyggnad på ett mer konkret sätt än en lista av lexikala element. Detta "träd"
+byggs upp utav olika syntaxnoder där varje nod är som en förgrening alternativt
+slutet på en gren i ett träd.
+
 ### Formell grammatik
 
 Ett formellt språk eller system defineras som en delmängd av en ändlig
@@ -282,7 +287,7 @@ beskrivning eller instruktion.
 Grammatiken av exempelvis ett formellt språk som beskriver matematisk heltals
 aritmetik skulle följande formell grammatik gälla, i detta fall i form av en
 EBNF definition samt en informell skriftlig definition som förklarar EBNF
-definitionen. Även en visuell representation finns i
+definitionen. Även en visuell representation finns i figur 1.
 
 ```EBNF
 siffra     = "0" | "1" | "2" | "3" | "4"
@@ -305,21 +310,11 @@ Ovan definition går att beskriva som följande med ord:
 - En `gruppering` defineras som ett uttryck inom paranteser
 - Ett `uttryck` defineras som antingen ett nummer, operation eller gruppering
 
-### Syntaxträd
-
 ### Kompilation eller interpretation
 
 [@nationalencyklopedin_trad] kompileras, det vill säga konverteras till
 maskinkod eller interpreteras, det vill säga tolka och utföra instruktionerna
 angivna datastrukturen.
-
-### Värderepresentation
-
-### Typsystem
-
-#### Statisk typning
-
-#### Dynamisk typning
 
 \pagebreak
 
@@ -353,12 +348,20 @@ programmeringsspråk och dess beståndsdelar skulle utgöra ytterligare problem 
 
 # Källförtäckning
 
-:::{#refs} :::
+::: {#refs}
+:::
 
 # Bilagor
 
 ## Figur 1. Diagram av en formell grammtik för heltals aritmetik
 
-![siffra](paper/data/siffra.svg) ![nummer](paper/data/nummer.svg)
-![operator](paper/data/operator.svg) ![operation](paper/data/operation.svg)
-![gruppering](paper/data/gruppering.svg) ![uttryck](paper/data/uttryck.svg)
+| Delmängd/Nodtyp | Diagram                                  |
+| --------------- | ---------------------------------------- |
+| Siffra          | ![siffra](paper/data/siffra.svg)         |
+| Nummer          | ![nummer](paper/data/nummer.svg)         |
+| Operator        | ![operator](paper/data/operator.svg)     |
+| Operation       | ![operation](paper/data/operation.svg)   |
+| Gruppering      | ![gruppering](paper/data/gruppering.svg) |
+| Uttryck         | ![uttryck](paper/data/uttryck.svg)       |
+
+## Figur 2. Syntaxträd utav exempel program i heltals aritmetik

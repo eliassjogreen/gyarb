@@ -8,6 +8,7 @@ docx:
 		--from markdown                             \
 		--to docx                                   \
 		--lua-filter ./paper/data/pagebreak.lua     \
+		--filter ./paper/data/svg-convert.py        \
 		--citeproc                                  \
 		--output ./output/paper.docx                \
 		./paper/paper.md
@@ -15,10 +16,12 @@ docx:
 pdf:
 	pandoc                                        \
 		--standalone                                \
+		--pdf-engine=xelatex                        \
 		--template ./paper/data/template.tex        \
 		--from markdown                             \
 		--to pdf                                    \
 		--lua-filter ./paper/data/pagebreak.lua     \
+		--filter ./paper/data/svg-convert.py        \
 		--citeproc                                  \
 		--output ./output/paper.pdf                 \
 		./paper/paper.md
