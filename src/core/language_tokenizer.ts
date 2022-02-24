@@ -17,8 +17,9 @@ export class LanguageTokenizer extends Tokenizer {
       { type: "while", pattern: language.keywords.while },
       { type: "break", pattern: language.keywords.break },
       { type: "continue", pattern: language.keywords.continue },
-      { type: "var", pattern: language.keywords.var },
-      { type: "val", pattern: language.keywords.val },
+      { type: "variable", pattern: language.keywords.variable },
+      { type: "constant", pattern: language.keywords.constant },
+      { type: "none", pattern: language.keywords.none },
 
       {
         type: "boolean",
@@ -27,7 +28,7 @@ export class LanguageTokenizer extends Tokenizer {
       },
       {
         type: "number",
-        pattern: /[\-\+]?[0-9]*(\.[0-9]+)?/,
+        pattern: /[0-9]+(\.[0-9]+)?/,
         value: (m: { match: string }) => parseFloat(m.match),
       },
       {
@@ -41,10 +42,18 @@ export class LanguageTokenizer extends Tokenizer {
       {
         type: "macro",
         pattern: /#\[([^\]]*)\]\s*{((?:[^}]|})*)}/,
+        value: (m: { groups: string[] }) => ({
+          type: m.groups[0],
+          value: m.groups[1],
+        }),
       },
       {
         type: "macro",
         pattern: /#\[([^\]]*)\]\s*(.*)/,
+        value: (m: { groups: string[] }) => ({
+          type: m.groups[0],
+          value: m.groups[1],
+        }),
       },
 
       { type: "left_parenthesis", pattern: "(" },
@@ -54,12 +63,12 @@ export class LanguageTokenizer extends Tokenizer {
       { type: "comma", pattern: "," },
       { type: "colon", pattern: ":" },
 
-      { type: "assign", pattern: "=" },
+      { type: "assignment", pattern: "=" },
 
-      { type: "plus", pattern: "+" },
-      { type: "minus", pattern: "-" },
-      { type: "multiply", pattern: "*" },
-      { type: "divide", pattern: "/" },
+      { type: "addition", pattern: "+" },
+      { type: "subtraction", pattern: "-" },
+      { type: "multiplication", pattern: "*" },
+      { type: "division", pattern: "/" },
       { type: "modulo", pattern: "%" },
 
       { type: "equality", pattern: "==" },
@@ -69,6 +78,7 @@ export class LanguageTokenizer extends Tokenizer {
       { type: "greater_than", pattern: ">" },
       { type: "greater_than_equal", pattern: ">=" },
 
+      { type: "logical_not", pattern: "!" },
       { type: "logical_or", pattern: "||" },
       { type: "logical_and", pattern: "&&" },
     ]);

@@ -13,6 +13,7 @@ export interface LanguageDefinition {
     continue: Pattern;
     variable: Pattern;
     constant: Pattern;
+    none: Pattern;
   };
   boolean: {
     true: string;

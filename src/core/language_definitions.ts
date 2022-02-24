@@ -1,5 +1,18 @@
 import { LanguageDefinition } from "./language_definition.ts";
 
+export function getLanguageDefinition(identifier: string) {
+  switch (identifier) {
+    case "sv":
+      return SwedishLanguageDefinition;
+    case "en":
+      return EnglishLanguageDefinition;
+    case "de":
+      return GermanLanguageDefinition;
+    case "fr":
+      return FrenchLanguageDefinition;
+  }
+}
+
 export const EnglishLanguageDefinition: LanguageDefinition = {
   keywords: {
     import: "import",
@@ -13,6 +26,7 @@ export const EnglishLanguageDefinition: LanguageDefinition = {
     continue: "continue",
     variable: "variable",
     constant: "constant",
+    none: "none",
   },
   boolean: {
     true: "true",
@@ -33,6 +47,7 @@ export const SwedishLanguageDefinition: LanguageDefinition = {
     continue: "fortsätt",
     variable: "variabel",
     constant: "konstant",
+    none: "inget",
   },
   boolean: {
     true: "sant",
@@ -53,6 +68,7 @@ export const GermanLanguageDefinition: LanguageDefinition = {
     continue: "fortsetzen",
     variable: "variable",
     constant: "konstante",
+    none: "null",
   },
   boolean: {
     true: "wahr",
@@ -73,6 +89,7 @@ export const FrenchLanguageDefinition: LanguageDefinition = {
     continue: "continue",
     variable: "variable",
     constant: "constant",
+    none: "rien",
   },
   boolean: {
     true: "vrai",
