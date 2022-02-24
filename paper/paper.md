@@ -680,17 +680,29 @@ program               = funktions_deklaration | import
 
 ## Implementation
 
+Vet typ inte vad jag ska skriva här? Jag programmerade lexikalanalysen,
+syntaxanalysen, kompilatorn och översättaren för språket.
+
 # Resultat
 
 ## Exempel
+
+Exempelkod på alla olika språk här!
 
 # Diskussion och Slutsats
 
 ## Icke-europeiska språk
 
+* Funkar kanske inte med right-to-left språk
+* Funkar kanske inte med språk som använder tecken
+
+## Läsbarhet
+
+* Vem som helst kan inte läsa det utan en översättare
+
 ## Kontext och nyckelord
 
-Skriv om problemet med exempelvis franska här, (hur type `variable` skulle
+* problemet med exempelvis franska här, (hur type `variable` skulle
 ändras om variabelnamnet var maskulint/feminint)
 
 # Källförtäckning
