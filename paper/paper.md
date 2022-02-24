@@ -8,8 +8,7 @@ info: |
   Läsåret 2021/2022
 
   Handledare: Sofie Danielsson
-title: En intresseväckande och relevant huvudrubrik
-subtitle: En informativ underrubrik
+title: Ett internationellt programmeringsspråk
 author: Elias Sjögreen
 abstract: |
   Skriv min abstract hääär!
@@ -310,6 +309,13 @@ Ovan definition går att beskriva som följande med ord:
 - En `gruppering` defineras som ett uttryck inom paranteser
 - Ett `uttryck` defineras som antingen ett nummer, operation eller gruppering
 
+Med hjälp av denna definiton går det att analysera en lista av tecken eller
+lexikala element för att bygga ett syntaxträd. Exempelvis skulle ett uttryck som
+"`123 + (-456 * 789)`" skapa det syntaxträd som finns i figur 2. Hur man
+genomför denna analys finns det ett antal olika sätt men vanligtvis delar man in
+syntaxanalysmetoderna i två familjer: "top-down" respektive "bottom-up" metoder
+[@lunell_1991].
+
 ### Kompilation eller interpretation
 
 [@nationalencyklopedin_trad] kompileras, det vill säga konverteras till
@@ -340,11 +346,352 @@ Blender. Att utveckla en integrerad utvecklingsmiljö utöver ett
 programmeringsspråk och dess beståndsdelar skulle utgöra ytterligare problem och
 är egentligen utanför projektets omfattning.
 
+## Verktyg och implementationsspråk
+
+Det programmerings som valdes som implementationsspråk för prototyp
+implementationen av programmeringsspråket var TypeScript [@bierman_2014], ett
+JavaScript baserat språk med tillägget av explicita datatyper. Anledningen till
+detta val var en avvägning mellan simplicitet, abstraktion, prestanda och
+möjligheten till plattformsoberoende kod för att göra språket körbart även i en
+webbläsare. Stöd för körning utav programmeringsspråket i både webbläsare och
+som program görs genom ett verktyg och körtidsmiljö vid namn Deno [@ry_2018].
+
+## Planering och strukturering
+
+Programmeringsspråkets lexikal-, syntax- och semantiskaanalys planerades och
+specifierades med hjälp av EBNF. Även en kompilator till JavaScript samt en
+översättare planerades. JavaScript valdes som kompilationsmål på grund av dess
+liknande struktur till det planerade språket samt dess stöd på dem flesta
+datorplatformerna.
+
+Översättaren planerades fungera endast på lexikal nivå, det vill säga den är
+kontextfri och ej bryr sig om exempelvis ordning eller elementtyp. Detta går
+eftersom den endast planeras översätta lexikalelement av typen "`nyckelord`" som
+vanligtvis är kontextfria^[Se underrubriken
+[Kontext och nyckelord](#Kontext-och-nyckelord) för vidare reflektion].
+
 # Genomförande
+
+## Specifikation
+
+En specifikation som beskriver programmeringsspråkets syntax och grammatik
+skapades i EBNF format, delar av denna specifikation är dock beroende utav det
+skriftspråk som önskas användas för språkets nyckelord.
+
+### Värden
+
+De värdetyper som valdes till specifikationen var `"boolesk"`, `"nummer"`,
+`"sträng"` och `"inget"`. Detta är endast ett litet urval utav de traditionella
+värdetyperna i ett programmeringsspråk för att avgränsa specifikationens och
+implementationens komplexitet. Dessa fyra värdetyper är grunden till alla
+algoritmer, uttryck och satser som programmeringsspråket kan processera.
+EBNF representationen är följande:
+
+```EBNF
+boolesk      = sant | falsk
+
+siffra       = "0" | "1" | "2" | "3" | "4"
+             | "5" | "6" | "7" | "8" | "9"
+nummer       = siffra+ "." {siffra+}
+
+sträng_värde = valfri_karaktär*
+sträng       = '"' (sträng_värde - "\"?) '"'
+
+värde        = boolesk | nummer | sträng | inget_nyckelord
+```
+
+### Identifierare
+
+En identifierare är en textuell referens eller ett namn till en funktion,
+variabel eller konstant. Detta skulle exempelvis kunna vara variabel- och
+funktionsnamn inom matematiken så som "`x`" eller "`pi`". Detta språk definerar
+en identifierare som en sekvens som börjar med en karaktär i unicode kategorin
+bokstav följt utav något av unicode kategorierna bokstav, symbol eller nummer.
+
+```EBNF
+identifierare    = unicode_bokstav
+                   (unicode_bokstav
+                   | unicode_symbol
+                   | unicode_nummer)*
+```
+
+### Kommentarer
+
+Kommentarer är inom programmeringsspråket är ett sätt för användaren att
+kommentera kod med text som ignoreras utav implementationen. Dessa är definerade
+på samma sätt som i många andra språk så som C, JavaScript och Rust. Det finns
+två typer av kommentarer: en-rads- och fler-rads-kommentarer.
+En-rads-kommentarer börjar där användaren har skrivit "`//`" och slutar vid
+radens slut medan fler-rads-kommentarer börjar vid "`/*`" och slutar vid "`*/`".
+Båda dessa kommentarstyperna ignorerar allt inom dessa avgränsare.
+
+```EBNF
+kommentar           = en_rads_kommentar | fler_rads_kommentar
+en_rads_kommentar   = "//" valfri_karaktär* ny_rad
+fler_rads_kommentar = "/*" valfri_karaktär* "*/"
+```
+
+### Makron
+
+Ett makro används i programmeringsspråket som ett sätt att kommunicera med
+kompilatorn för att exempelvis importera kod skriven i andra programmeringsspråk
+än detta. Likt kommentarer finns två olika typer av makron, en-rads-makron och
+fler-rads-makron. Dessa består utav en typidentifierare och ett värde.
+Typidentifieraren är till för att tipsa kompilatorn om hur makrots värde skall
+tolkas. Exempelvis genom att importera makrots värde som obearbetad kod.
+
+```EBNF
+makro               = en_rads_makro | fler_rads_makro
+makro_identifierare = valfri_karaktär*
+makro_värde         = valfri_karaktär*
+en_rads_makro       = "#(" makro_identifierare ")" makro_värde ny_rad
+en_rads_makro       = "#(" makro_identifierare ")" "{" makro_värde "}"
+```
+
+### Operatorer
+
+Operatorerna som är definerade för språket agerar endast på nummer- och
+booleskvärden på samma sätt som dess motsvarigheter i matematiken.
+
+| Symbol | Beskrivning                                                                                             |
+| ------ | ------------------------------------------------------------------------------------------------------- |
+| `=`    | Anger en variabels värde                                                                                |
+| `+`    | Addition vid operationer med två nummervärde, annars för att markera att ett nummervärde är positivt    |
+| `-`    | Subtraktion vid operationer med två nummervärde, annars för att markera att ett nummervärde är negativt |
+| `*`    | Multiplikation av två nummervärden                                                                      |
+| `/`    | Division av två nummervärden                                                                            |
+| `%`    | Restprodukten av två nummervärden vid division                                                          |
+| `==`   | Jämför två värden för likhet                                                                            |
+| `!=`   | Jämför två värden för olikhet                                                                           |
+| `<`    | Jämför ifall det första nummervärdet är mindre än det andra nummervärdet                                |
+| `<=`   | Jämför ifall det första nummervärdet är mindre eller lika med än det andra nummervärdet                 |
+| `>`    | Jämför ifall det första nummervärdet är större än det andra nummervärdet                                |
+| `>=`   | Jämför ifall det första nummervärdet är större eller lika med än det andra nummervärdet                 |
+| `!`    | Inverterar en boolesk, dvs gör om sanna booleskvärden till falska och falska till sanna                 |
+| `||`   | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall något av värdena är sanna   |
+| `&&`   | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall båda värdena är sanna       |
+
+EBNF definitionen är densamma som symbolerna i tabellen.
+
+### Nyckelord
+
+Nyckelorden i programmeringsspråket används för att markera olika uttryck
+och satser. Dessa nyckelord är dock skriftspråksspecifika vilket gör att
+språkets definition ändras beroende på skriftspråk.
+
+| Engelska   | Svenska     | Tyska         | Franska    |
+| ---------- | ----------- | ------------- | ---------- |
+| `import`   | `importera` | `importieren` | `import`   |
+| `from`     | `från`      | `aus`         | `des`      |
+| `export`   | `exportera` | `exportieren` | `export`   |
+| `function` | `funktion`  | `funktion`    | `function` |
+| `return`   | `returnera` | `rückkehr`    | `retourne` |
+| `if`       | `om`        | `ob`          | `si`       |
+| `while`    | `medan`     | `während`     | `pendant`  |
+| `break`    | `avbryt`    | `abbrechen`   | `casse`    |
+| `continue` | `fortsätt`  | `fortsetzen`  | `continue` |
+| `variable` | `variabel`  | `variable`    | `variable` |
+| `constant` | `konstant`  | `konstante`   | `constant` |
+| `none`     | `inget`     | `null`        | `rien`     |
+| `true`     | `sant`      | `wahr`        | `vrai`     |
+| `false`    | `falskt`    | `falsch`      | `faux`     |
+
+EBNF definitionen är densamma som orden i kolumnen för det skriftspråk man
+använder.
+
+### Uttryck
+
+#### Binära- och unärauttryck
+
+Binära och unärauttryck är en grupp av olika operationer som utförs på ett, två
+eller flera uttryck. Denna typ utav uttryck kräver en operator och defineras
+som följande:
+
+```EBNF
+binärt_uttryck = uttryck binär_operator uttryck
+unärt_uttryck  = unär_operator uttryck
+```
+
+#### Villkorsuttryck
+
+Villkorsuttryck används för att i uttryck välja antingen ett uttryck eller det
+andra beroende på om ett villkor (booleskt uttryck) är sant eller falskt likt
+en om-sats.
+
+```EBNF
+villkor           = uttryck
+uttryck_om_sant   = uttryck
+uttryck_om_falskt = uttryck
+villkors_uttryck  = om_nyckelord villkor
+                    uttryck_om_sant
+                    annars_nyckelord
+                    uttryck_om_falskt
+```
+
+#### Funktionsanrop
+
+Funktionsanrop är likt funktioner i matten anrop till tidigare definerade
+funktioner, dessa anrop kan ta noll eller flera uttryck som argument.
+
+```EBNF
+funktions_argument = uttryck
+funktions_anrop    = identifierare
+                     "(" funktions_argument
+                     ("," funktions_argument)* ")"
+```
+
+#### Variabelåtkomst
+
+Variabel- och konstantåtkomst görs genom att specifiera variabeln eller
+konstantens identifierare.
+
+```EBNF
+variabel_åtkomst = identifierare
+```
+
+#### Gruppering
+
+En gruppering används i ett uttryck för att markera vilken ordning ett uttryck
+utförs, likt hur i matematiken paranteser används för prioritering. Det är även
+värt att notera att även operatorerna följer prioriteringsreglerna.
+
+```EBNF
+gruppering = "(" uttryck ")"
+```
+
+#### Sammanfattning av uttryck
+
+Sammanfattningsvis kan ett uttryck i programmeringsspråket defineras som något
+av ovan definerade kategorierna eller ett värde.
+
+```EBNF
+uttryck = unärt_uttryck
+        | binärt_uttryck
+        | vilkors_uttryck
+        | funktions_anrop
+        | variabel_åtkomst
+        | gruppering
+        | värde
+```
+
+### Satser
+
+#### Villkorssats
+
+Villkors-, om-, eller if-satsen är en konstruktion i programmeringsspråket
+för att programmera logik och kontrollera flödet av ett program. En if-sats
+består av ett uttryck som representerar villkoret för att köra dess inre satser.
+Valfritt är även en annars- eller else-sats som körs ifall villkorsuttrycket ej
+är sant.
+
+```EBNF
+villkor       = uttryck
+villkors_sats = om_nyckelord "(" villkor ")" sats
+                (annars_nyckelord sats)?
+```
+
+#### Medan, fortsätt och avbryt
+
+För mer advancerade program finns medan- eller while-satsen med dess tillhörande
+nyckelord: "`fortsätt`" och "`avbryt`". Denna sats finns likt en villkorssats för
+att kontrollera flödet av ett program men till skillnad från en villkorssats
+fortsätter medansatsen att köra dess inre satser tills villkoret är falskt.
+
+```EBNF
+villkor    = uttryck
+medan_sats = medan_nyckelord "(" villkor ")" sats
+```
+
+#### Returnera
+
+En funktion finns som en abstraktion för att återanvända och abstrahera
+exempelvis algoritmer. För att funktioner ska kunna användas i uttryck
+och skapa nya värden finns nyckelordet "`returnera`" för att returnera
+ett värde från en funktion och avbryta funktionens körning.
+
+```EBNF
+returnera = returnera_nyckelord uttryck
+```
+
+#### Variabel- och konstantdeklaration
+
+För att deklarera variabla och konstanta värden som kan användas i en lokal
+räckvidd, det vill säga exempelvis det nuvarande kodblocket eller funktionen.
+
+```EBNF
+variable_deklaration = variabel_nyckelord
+                       identifierare "=" uttryck
+konstant_deklaration = konstant_nyckelord
+                       identifierare "=" uttryck
+```
+
+#### Kodblock
+
+Ett kodblock består av en lista utav satser som alla existerar i kodblockets
+egna räckvidd. Detta gör att variabler och konstanter, men även värden som är
+skapta i det lokala kodblocket inte kan användas av något på en högre nivå,
+som exempelvis ifall kodblocket skulle vara inuti ett annat kodblock.
+
+```EBNF
+kod_block = "{" sats* "}"
+```
+
+#### Sammanfattning av satser
+
+Satser är sammanfattningsvis alla ovanstående rubriker samt uttryck och makron.
+Dessa satser används inne i exempelvis funktioner för att skapa logiken som
+utgör ett program.
+
+```EBNF
+sats = villkors_sats
+     | medan_sats
+     | returnera
+     | variable_deklaration
+     | konstant_deklaration
+     | kod_block
+     | uttryck
+     | makro
+```
+
+### Program
+
+Ett program är en lista utav syntaxelement på toppnivån. Dem enda elementen
+som räknas som detta är funktionsdeklarationer och importer. Funktioner är
+till för att abstahera och binda ihop sammanhängande satser av kod som lätt
+kan användas flera gånger i koden. Importer är till för att använda extern
+kod.
+
+```EBNF
+funktions_argument    = identifierare
+funktions_deklaration = exportera_nyckelord? funktion_nyckelord
+                        identifierare
+                        "(" funktions_argument
+                        ("," funktions_argument)* ")"
+                        kod_block
+
+import_element        = identifierare
+importera             = importera_nyckelord
+                        (import_element ("," import_element)*
+                        från_nyckelord)?
+                        sträng
+
+program               = funktions_deklaration | import
+```
+
+## Implementation
 
 # Resultat
 
+## Exempel
+
 # Diskussion och Slutsats
+
+## Icke-europeiska språk
+
+## Kontext och nyckelord
+
+Skriv om problemet med exempelvis franska här, (hur type `variable` skulle
+ändras om variabelnamnet var maskulint/feminint)
 
 # Källförtäckning
 

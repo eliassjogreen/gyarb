@@ -37,7 +37,7 @@ export class LanguageTokenizer extends Tokenizer {
         value: (m: { groups: string[] }) => m.groups[0],
       },
 
-      { type: "identifier", pattern: /\p{L}+/u },
+      { type: "identifier", pattern: /\p{L}[\p{L}\p{S}\p{N}]*/u },
 
       {
         type: "macro",
