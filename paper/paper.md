@@ -356,7 +356,7 @@ möjligheten till plattformsoberoende kod för att göra språket körbart även
 webbläsare. Stöd för körning utav programmeringsspråket i både webbläsare och
 som program görs genom ett verktyg och körtidsmiljö vid namn Deno [@ry_2018].
 
-## Planering och strukturering
+## Planering och struktur
 
 Programmeringsspråkets lexikal-, syntax- och semantiskaanalys planerades och
 specifierades med hjälp av EBNF. Även en kompilator till JavaScript samt en
@@ -453,23 +453,23 @@ en_rads_makro       = "#(" makro_identifierare ")" "{" makro_värde "}"
 Operatorerna som är definerade för språket agerar endast på nummer- och
 booleskvärden på samma sätt som dess motsvarigheter i matematiken.
 
-| Symbol | Beskrivning                                                                                             |
-| ------ | ------------------------------------------------------------------------------------------------------- |
-| `=`    | Anger en variabels värde                                                                                |
-| `+`    | Addition vid operationer med två nummervärde, annars för att markera att ett nummervärde är positivt    |
-| `-`    | Subtraktion vid operationer med två nummervärde, annars för att markera att ett nummervärde är negativt |
-| `*`    | Multiplikation av två nummervärden                                                                      |
-| `/`    | Division av två nummervärden                                                                            |
-| `%`    | Restprodukten av två nummervärden vid division                                                          |
-| `==`   | Jämför två värden för likhet                                                                            |
-| `!=`   | Jämför två värden för olikhet                                                                           |
-| `<`    | Jämför ifall det första nummervärdet är mindre än det andra nummervärdet                                |
-| `<=`   | Jämför ifall det första nummervärdet är mindre eller lika med än det andra nummervärdet                 |
-| `>`    | Jämför ifall det första nummervärdet är större än det andra nummervärdet                                |
-| `>=`   | Jämför ifall det första nummervärdet är större eller lika med än det andra nummervärdet                 |
-| `!`    | Inverterar en boolesk, dvs gör om sanna booleskvärden till falska och falska till sanna                 |
-| `||`   | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall något av värdena är sanna   |
-| `&&`   | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall båda värdena är sanna       |
+| Symbol       | Beskrivning                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------- |
+| `=`          | Anger en variabels värde                                                                                |
+| `+`          | Addition vid operationer med två nummervärde, annars för att markera att ett nummervärde är positivt    |
+| `-`          | Subtraktion vid operationer med två nummervärde, annars för att markera att ett nummervärde är negativt |
+| `*`          | Multiplikation av två nummervärden                                                                      |
+| `/`          | Division av två nummervärden                                                                            |
+| `%`          | Restprodukten av två nummervärden vid division                                                          |
+| `==`         | Jämför två värden för likhet                                                                            |
+| `!=`         | Jämför två värden för olikhet                                                                           |
+| `<`          | Jämför ifall det första nummervärdet är mindre än det andra nummervärdet                                |
+| `<=`         | Jämför ifall det första nummervärdet är mindre eller lika med än det andra nummervärdet                 |
+| `>`          | Jämför ifall det första nummervärdet är större än det andra nummervärdet                                |
+| `>=`         | Jämför ifall det första nummervärdet är större eller lika med än det andra nummervärdet                 |
+| `!`          | Inverterar en boolesk, dvs gör om sanna booleskvärden till falska och falska till sanna                 |
+| `||`         | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall något av värdena är sanna   |
+| `&&`         | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall båda värdena är sanna       |
 
 EBNF definitionen är densamma som symbolerna i tabellen.
 
