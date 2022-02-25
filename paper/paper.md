@@ -11,7 +11,15 @@ info: |
 title: Ett internationellt programmeringsspråk
 author: Elias Sjögreen
 abstract: |
-  Skriv min abstract hääär!
+  Computer programming has gone from being a relatively unusual skill to
+  something more and more people are learning, for jobs and as a hobby. The
+  global demand for programmers is increasing in line with the internet and
+  global digitalization. Most programming languages are however written in
+  and use English while the majority of the world does not use English as
+  its primary language. This report examines the possibility of creating a
+  specification and prototype implementation of a programming language which
+  is translateable between multiple different written languages as a way of
+  making programming more accessible to a global audience.
 
   \pagebreak
 
@@ -27,17 +35,17 @@ documentclass: report
 
 # Inledning
 
-Datorprogrammering har gått från att vara en nisch skicklighet till något fler
-och fler människor lär sig, för jobb och som en hobby. Industrin och den globala
-efterfrågan för programmerare ökar i takt med internet och i princip all
-teknologi, från din mikrovågsugn till dator till det komplexa system som styr
-exempelvis elnätet. Detta är inte heller något lokalt fenomen, digitaliseringen
-är global men majoriteten av programmeringsspråken som är ett väsentligt verktyg
-för denna teknologiska utveckling är fortfarande begränsade av en språkbarriär
-då de flesta programmeringsspråk använder sig av Engelskan. Denna rapport
-undersöker möjligheten att skapa en specifikation samt prototyp av ett
-programmeringsspråk med mål att vara översättningsbart mellan olika naturliga
-språk i utbildningsyfte.
+Datorprogrammering har gått från att vara en relativt ovanlig färdighet till
+något fler och fler människor lär sig, för jobb och som en hobby. Industrin
+och den globala efterfrågan för programmerare ökar i takt med internet och i
+princip all teknologi, från din mikrovågsugn till dator till det komplexa
+system som styr exempelvis elnätet. Detta är inte heller något lokalt fenomen,
+digitaliseringen är global men majoriteten av programmeringsspråken som är ett
+väsentligt verktyg för denna teknologiska utveckling är fortfarande begränsade
+av en språkbarriär då de flesta programmeringsspråk använder sig av engelskan.
+Denna rapport undersöker möjligheten att skapa en specifikation samt prototyp
+implementation av ett programmeringsspråk med mål att vara översättningsbart
+mellan olika skriftspråk.
 
 # Bakgrund
 
