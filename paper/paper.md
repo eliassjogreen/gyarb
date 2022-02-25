@@ -305,7 +305,7 @@ beskrivning eller instruktion.
 Grammatiken av exempelvis ett formellt språk som beskriver matematisk heltals
 aritmetik skulle följande formell grammatik gälla, i detta fall i form av en
 EBNF definition samt en informell skriftlig definition som förklarar EBNF
-definitionen. Även en visuell representation finns i figur 1.
+definitionen. Även en visuell representation finns i bilaga 1.
 
 ```EBNF
 siffra     = "0" | "1" | "2" | "3" | "4"
@@ -330,16 +330,18 @@ Ovan definition går att beskriva som följande med ord:
 
 Med hjälp av denna definiton går det att analysera en lista av tecken eller
 lexikala element för att bygga ett syntaxträd. Exempelvis skulle ett uttryck som
-"`123 + (-456 * 789)`" skapa det syntaxträd som finns i figur 2. Hur man
+"`123 + (-456 * 789)`" skapa det syntaxträd som finns i bilaga 2. Hur man
 genomför denna analys finns det ett antal olika sätt men vanligtvis delar man in
 syntaxanalysmetoderna i två familjer: "top-down" respektive "bottom-up" metoder
 [@lunell_1991].
 
-### Kompilation eller interpretation
+### Kompilation, transpilation och interpretation
 
-[@nationalencyklopedin_trad] kompileras, det vill säga konverteras till
-maskinkod eller interpreteras, det vill säga tolka och utföra instruktionerna
-angivna datastrukturen.
+Syntaxträdet kompileras, det vill säga konverteras till maskinkod eller
+interpreteras, det vill säga tolka och utföra instruktionerna angivna
+datastrukturen.
+
+TODODODOODODODO
 
 \pagebreak
 
@@ -407,7 +409,7 @@ algoritmer, uttryck och satser som programmeringsspråket kan processera.
 EBNF representationen är följande:
 
 ```EBNF
-boolesk      = sant | falsk
+boolesk      = sant_nyckelord | falsk_nyckelord
 
 siffra       = "0" | "1" | "2" | "3" | "4"
              | "5" | "6" | "7" | "8" | "9"
@@ -718,10 +720,20 @@ $ gyarb run       --language [en|sv|de|fr] <file>
 $ gyarb translate --language [en|sv|de|fr] <file>
 ```
 
-## Exempel
+Det resulterande programmeringspråket utvecklat utifrån de principer och idéer
+presenterade i bakgrunden och frågeställningen stödjer fyra skriftspråk med
+hjälp av en abstraktion av lexikalanalysen som tillåter att modulärt byta ut
+nyckelorden. Detta tillåter översättning mellan de olika stödda skriftspråken
+samt en singulär syntaxanalysator och kompilator oberoende av den inmatade
+källkoden.
+
+Programmeringsspråket definerades i definitionsformatet EBNF och dess fulla
+lexikala och syntax specifikation kan finnas i bilaga 3 respektive 4. Dessa
+två specifikationer är uppdelade för att reflekter programmets interna
+uppdelning.
 
 För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
-översättningar till olika språk se figur 3-5. Dessa exempel behandlar värden,
+översättningar till olika språk se bilaga 5-7. Dessa exempel behandlar värden,
 operationer, funktioner, import och export av funktioner samt algoritmer och
 makron.
 
@@ -743,6 +755,14 @@ makron.
 * Variable namn
 * Nyckelord auf oder sprachen
 
+## Vidare utveckling
+
+För att vidare utveckla studieområdet skulle en kvantitativ studie utföras.
+Studien skulle exempelvis kunna mäta hur individer upplever språkets läsbarhet
+, korrekthet eller lärande enkelhet i olika skriftspråk. Man skulle även kunna
+studera en fler-språkig individs möjlighet att förstå programmeringsspråkets
+olika skriftspråksvarianter.
+
 # Källförtäckning
 
 ::: {#refs}
@@ -750,7 +770,7 @@ makron.
 
 # Bilagor
 
-## Figur 1. Diagram av en formell grammtik för heltals aritmetik
+## Bilaga 1. Diagram av en formell grammtik för heltals aritmetik
 
 | Delmängd/Nodtyp | Diagram                                  |
 | --------------- | ---------------------------------------- |
@@ -761,9 +781,116 @@ makron.
 | Gruppering      | ![gruppering](paper/data/gruppering.svg) |
 | Uttryck         | ![uttryck](paper/data/uttryck.svg)       |
 
-## Figur 2. Syntaxträd utav exempel program i heltals aritmetik
+## Bilaga 2. Syntaxträd utav exempel program i heltals aritmetik
 
-## Figur 3. Exempelprogram "Hej, Världen!"
+## Bilaga 3. Full lexikal EBNF specifikation av programmeringsspråket
+
+```EBNF
+importera_nyckelord
+från_nyckelord     
+exportera_nyckelord
+funktion_nyckelord 
+returnera_nyckelord
+om_nyckelord       
+medan_nyckelord    
+avbryt_nyckelord   
+fortsätt_nyckelord 
+variabel_nyckelord 
+konstant_nyckelord 
+inget_nyckelord    
+sant_nyckelord     
+falskt_nyckelord   
+
+kommentar           = en_rads_kommentar | fler_rads_kommentar
+en_rads_kommentar   = "//" valfri_karaktär* ny_rad
+fler_rads_kommentar = "/*" valfri_karaktär* "*/"
+
+makro               = en_rads_makro | fler_rads_makro
+makro_identifierare = valfri_karaktär*
+makro_värde         = valfri_karaktär*
+en_rads_makro       = "#(" makro_identifierare ")" makro_värde ny_rad
+en_rads_makro       = "#(" makro_identifierare ")" "{" makro_värde "}"
+
+operator            = "=" | "+" | "-" | "*"
+                    | "/" | "%" | "==" | "!="
+                    | "<" | "<=" | ">" | ">="
+                    | "!" | "||" | "&&"
+
+boolesk             = sant_nyckelord | falsk_nyckelord
+
+siffra              = "0" | "1" | "2" | "3" | "4"
+                    | "5" | "6" | "7" | "8" | "9"
+nummer              = siffra+ "." {siffra+}
+
+sträng_värde        = valfri_karaktär*
+sträng              = '"' (sträng_värde - "\"?) '"'
+
+värde               = boolesk | nummer | sträng | 
+
+identifierare       = unicode_bokstav
+                      (unicode_bokstav
+                    |  unicode_symbol
+                    |  unicode_nummer)*
+```
+
+## Bilaga 4. Full syntax EBNF specifikation av programmeringsspråket
+
+```EBNF
+villkors_uttryck      = om_nyckelord uttryck
+                        uttryck
+                        annars_nyckelord
+                        uttryck
+
+funktions_anrop       = identifierare
+                        "(" uttryck
+                        ("," uttryck)* ")"
+
+gruppering            = "(" uttryck ")"
+
+uttryck               = unärt_uttryck
+                      | binärt_uttryck
+                      | vilkors_uttryck
+                      | funktions_anrop
+                      | identifierare
+                      | gruppering
+                      | värde
+
+villkors_sats         = om_nyckelord
+                        "(" uttryck ")" sats
+                        (annars_nyckelord sats)?
+
+returnera             = returnera_nyckelord uttryck
+variable_deklaration  = variabel_nyckelord
+                        identifierare "=" uttryck
+konstant_deklaration  = konstant_nyckelord
+                        identifierare "=" uttryck
+
+kod_block             = "{" sats* "}"
+
+sats                  = villkors_sats
+                      | medan_sats
+                      | returnera
+                      | variable_deklaration
+                      | konstant_deklaration
+                      | kod_block
+                      | uttryck
+                      | makro
+
+funktions_deklaration = exportera_nyckelord? funktion_nyckelord
+                        identifierare
+                        "(" identifierare
+                        ("," identifierare)* ")"
+                        kod_block
+
+importera             = importera_nyckelord
+                        (identifierare ("," identifierare)*
+                        från_nyckelord)?
+                        sträng
+
+program               = funktions_deklaration | import
+```
+
+## Bilaga 5. Exempelprogram "Hej, Världen!"
 
 #### Engelska:
 
@@ -805,7 +932,7 @@ function entrée() {
 }
 ```
 
-## Figur 4. Exempelprogram uttryck
+## Bilaga 6. Exempelprogram uttryck
 
 #### Engelska:
 
@@ -847,7 +974,7 @@ function entrée() {
 }
 ```
 
-## Figur 5. Exempelprogram satser
+## Bilaga 7. Exempelprogram satser
 
 #### Engelska:
 
