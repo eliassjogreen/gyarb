@@ -714,19 +714,20 @@ terminal eller kommandotolk:
 $ gyarb tokenize  --language [en|sv|de|fr] <file>
 $ gyarb parse     --language [en|sv|de|fr] <file>
 $ gyarb compile   --language [en|sv|de|fr] <file>
+$ gyarb run       --language [en|sv|de|fr] <file>
 $ gyarb translate --language [en|sv|de|fr] <file>
 ```
 
 ## Exempel
 
 För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
-översättningar till olika språk se figur 3. Dessa exempel behandlar värden,
+översättningar till olika språk se figur 3-5. Dessa exempel behandlar värden,
 operationer, funktioner, import och export av funktioner samt algoritmer och
 makron.
 
 # Diskussion och Slutsats
 
-## Icke-europeiska språk
+## Icke-latinska skriftspråk
 
 * Funkar kanske inte med right-to-left språk
 * Funkar kanske inte med språk som använder tecken
@@ -739,6 +740,8 @@ makron.
 
 * problemet med exempelvis franska här, (hur type `variable` skulle
 ändras om variabelnamnet var maskulint/feminint)
+* Variable namn
+* Nyckelord auf oder sprachen
 
 # Källförtäckning
 
@@ -760,7 +763,7 @@ makron.
 
 ## Figur 2. Syntaxträd utav exempel program i heltals aritmetik
 
-## Figur 3. Exempelprogram
+## Figur 3. Exempelprogram "Hej, Världen!"
 
 #### Engelska:
 
@@ -798,6 +801,138 @@ funktion eingang() {
 import écrivez des "standard.fr"
 
 function entrée() {
- écrivez("Bonjour le monde!")
+  écrivez("Bonjour le monde!")
+}
+```
+
+## Figur 4. Exempelprogram uttryck
+
+#### Engelska:
+
+```
+import print from "standard.en"
+
+function entry() {
+  print(1 + 2 * (3 / 4) % 8 == 2)
+}
+```
+
+#### Svenska:
+
+```
+importera skriv från "standard.sv"
+
+funktion ingång() {
+  skriv(1 + 2 * (3 / 4) % 8 == 2)
+}
+```
+
+#### Tyska:
+
+```
+importieren schreiben aus "standard.de"
+
+funktion eingang() {
+  schreiben(1 + 2 * (3 / 4) % 8 == 2)
+}
+```
+
+#### Franska:
+
+```
+import écrivez des "standard.fr"
+
+function entrée() {
+  écrivez(1 + 2 * (3 / 4) % 8 == 2)
+}
+```
+
+## Figur 5. Exempelprogram satser
+
+#### Engelska:
+
+```
+import print from "standard.en"
+
+function entry() {
+  constant y = 2
+  variable x = 0
+
+  while (x <= 10) {
+    x = x + y
+    print(x)
+
+    if (x % 2 == 0) {
+      print("a")
+    } else {
+      print("b")
+    }
+  }
+}
+```
+
+#### Svenska:
+
+```
+importera skriv från "standard.sv"
+
+funktion ingång() {
+  konstant y = 2
+  variabel x = 0
+
+  medan (x <= 10) {
+    x = x + y
+    skriv(x)
+
+    om (x % 2 == 0) {
+      skriv("a")
+    } else {
+      skriv("b")
+    }
+  }
+}
+```
+
+#### Tyska:
+
+```
+importieren schreiben aus "standard.de"
+
+funktion eingang() {
+  konstante y = 2
+  variable x = 0
+
+  während (x <= 10) {
+    x = x + y
+    schreiben(x)
+
+    ob (x % 2 == 0) {
+      schreiben("a")
+    } else {
+      schreiben("b")
+    }
+  }
+}
+```
+
+#### Franska:
+
+```
+import écrivez des "standard.fr"
+
+function entrée() {
+  constant y = 2
+  variable x = 0
+
+  pendant (x <= 10) {
+    x = x + y
+    écrivez(x)
+
+    si (x % 2 == 0) {
+      écrivez("a")
+    } else {
+      écrivez("b")
+    }
+  }
 }
 ```
