@@ -43,42 +43,53 @@ språk i utbildningsyfte.
 
 ## Begreppslista
 
-**Programmeringspråk** eller **programspråk** är en representation i text eller
+
+**Programmeringspråk** eller **programspråk**
+: är en representation i text eller
 visuellt av de instruktioner som man önskar ska kompileras för att sedan köras,
 antingen som maskinkod, mellanrepresentation eller tolkas i en interpretator.
 
-**Maskinkod** är den binära kod, bestående av olika instruktioner som en dator
+**Maskinkod**
+: är den binära kod, bestående av olika instruktioner som en dator
 direkt kan tolka och genomföra.
 
-**Plattformsoberoende kod** eller **mellanrepresentation** är en typ av kod som
+**Plattformsoberoende kod** eller **mellanrepresentation**
+: är en typ av kod som
 kan köras på en virtuell maskin på datorn istället för att köras direkt på
 datorn genom maskinkod.
 
-**Källkod** eller **källprogram** är ett datorprogram representerat som det
+**Källkod** eller **källprogram**
+: är ett datorprogram representerat som det
 programmeringsspråk det från början var skrive i.
 
-**Program** eller **datorprogram** är vilket som helst program som en dator kan
+**Program** eller **datorprogram**
+: är vilket som helst program som en dator kan
 tolka och genomföra. Detta innefattar maskinkod men även källkod och olika typer
 av plattformsoberoende kod.
 
-**Virtuell maskin** är en virtuell dator som i programmeringssyfte används för
+**Virtuell maskin**
+: är en virtuell dator som i programmeringssyfte används för
 att skapa en miljö där plattformsoberoende kod eller olika
 mellanrepresentationer kan köras så som om dess kod var äkta maskinkod.
 
-**Interpretator** eller **programtolk** är ett datorprogram som tolkar och
+**Interpretator** eller **programtolk**
+: är ett datorprogram som tolkar och
 genomför de instruktioner som beskrivs i programmet direkt utan översättning
 eller kompilation till maskinkod eller någon mellanrepresentation.
 
-**Kompilator** är ett datorprogram som kan översätta ett program skrivet i
+**Kompilator**
+: är ett datorprogram som kan översätta ett program skrivet i
 källkod till datorprogram som går att köra representerade som maskinkod eller
 olika mellanrepresentationer.
 
-**Integrerad utvecklingsmiljö** är ett datorprogram som innehåller ett antal
+**Integrerad utvecklingsmiljö**
+: är ett datorprogram som innehåller ett antal
 olika verktyg för att arbeta med exempelvis programmering. Detta kan inkludera
 exempelvis en textredigerare, visuell programmeringsmiljö och en kompilator
 eller interpretator.
 
-**Datastruktur** är en abstraktion av flera olika datavärden så som exempelvis
+**Datastruktur**
+: är en abstraktion av flera olika datavärden så som exempelvis
 en lista, ett träd eller en tabell. Detta görs för att datorn effektivt skall
 kunna arbeta med icke-primitiva datavärden och för att förenkla användandet.
 
@@ -685,9 +696,25 @@ syntaxanalysen, kompilatorn och översättaren för språket.
 
 # Resultat
 
+Implementationen utav programmeringsspråket publiceras kontinuerligt som
+öppen-källkod på [github.com/eliassjogreen/gyarb](https://github.com/eliassjogreen/gyarb/).
+Resulterande program kan köras lokalt för att utföra lexikalanalys,
+syntaxanalys, kompilation eller översättning med följande kommandon i en
+terminal eller kommandotolk:
+
+```bash
+$ gyarb tokenize  --language [en|sv|de|fr] <file>
+$ gyarb parse     --language [en|sv|de|fr] <file>
+$ gyarb compile   --language [en|sv|de|fr] <file>
+$ gyarb translate --language [en|sv|de|fr] <file>
+```
+
 ## Exempel
 
-Exempelkod på alla olika språk här!
+För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
+översättningar till olika språk se figur 3. Dessa exempel behandlar värden,
+operationer, funktioner, import och export av funktioner samt algoritmer och
+makron.
 
 # Diskussion och Slutsats
 
@@ -724,3 +751,45 @@ Exempelkod på alla olika språk här!
 | Uttryck         | ![uttryck](paper/data/uttryck.svg)       |
 
 ## Figur 2. Syntaxträd utav exempel program i heltals aritmetik
+
+## Figur 3. Exempelprogram
+
+#### Engelska:
+
+```
+import print from "standard.en"
+
+function entry() {
+  print("Hello, World!")
+}
+```
+
+#### Svenska:
+
+```
+importera skriv från "standard.sv"
+
+funktion ingång() {
+  skriv("Hej, Världen!")
+}
+```
+
+#### Tyska:
+
+```
+importieren schreiben aus "standard.de"
+
+funktion eingang() {
+  schreiben("Hallo, Welt!")
+}
+```
+
+#### Franska:
+
+```
+import écrivez des "standard.fr"
+
+function entrée() {
+ écrivez("Bonjour le monde!")
+}
+```
