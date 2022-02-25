@@ -23,3 +23,10 @@ pdf:
 		--citeproc                                  \
 		--output ./output/paper.pdf                 \
 		./paper/paper.md
+
+cli:
+	deno compile                                  \
+		--allow-all                                 \
+		--unstable                                  \
+		--output output/gyarb                       \
+		src/cli/main.ts
