@@ -349,9 +349,9 @@ TODODODOODODODO
 
 Målet med projektet är att utveckla ett prototypprogram samt specifikation av
 ett programmeringsspråk. Denna prototyp skall vara översättningsbart och
-lättförståeligt. Syftet med detta är för att undersöka möjligheten och olika
-tillvägagångssätt för att skapa ett programmeringsspråk som går att översätta
-till olika språk och fortfarande vara enkelt att förstå.
+lättförståeligt på olika språk. Syftet med detta är för att undersöka möjligheten
+och olika tillvägagångssätt för att skapa ett programmeringsspråk som går att
+översätta till olika språk och fortfarande vara enkelt att förstå.
 
 # Metod
 
@@ -739,6 +739,28 @@ makron.
 
 # Diskussion och Slutsats
 
+Det framtagna programmeringsspråket behandlar vissa av de idéerna som presenterades
+i bakgrunden och uppfyller frågeställningen, men lämnar även många viktiga funktioner
+och anpassningar som skulle önskas för ett mer kapabelt programmeringsspråk.
+
+## Mellanspråklig användning
+
+I det utvecklade programmeringsspråket går det i nuläget att använda delar av
+ett program eller ett programbiblotek skrivet i ett skriftspråk i ett annat
+program skrivet i ett annat skriftsspråk. Bristen i detta är flera, bland annat
+att identifierare inte översätts på grund av det faktum att dem är arbiträra och
+inte konsekvent kan översättas ifall användaren inte specifikt förser varje
+identifierare med en översättning för varje skriftspråk programmet är implementerat
+för.
+
+Detta skulle vara möjligt med hjälp av en ny grammatik eller genom användingen
+av makron. Ett annat alternativ är att använde en översättningstjänst för att
+på så sätt automatiskt översätta identifierare. Detta kräver dock vidare undersökning
+då ett automatiserat system skulle skapa en mängd nya problem, bland annat
+felöversättningar, försämrad läsbarhet och identifierare som inte går att översätta.
+Det skulle även göra att språket inte är determenistiskt om inte översättningssystemet
+är determenistiskt.
+
 ## Icke-latinska skriftspråk
 
 * Funkar kanske inte med right-to-left språk
@@ -747,6 +769,8 @@ makron.
 ## Läsbarhet
 
 * Vem som helst kan inte läsa det utan en översättare
+* Behöver ens ett språk vara på personens talade eller skrivna språk?
+* Hjälper det inlärningen isf?
 
 ## Kontext och nyckelord
 
