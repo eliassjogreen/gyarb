@@ -15,9 +15,6 @@ export function getLanguageDefinition(identifier: string) {
 
 export const EnglishLanguageDefinition: LanguageDefinition = {
   keywords: {
-    import: "import",
-    from: "from",
-    export: "export",
     function: "function",
     return: "return",
     if: "if",
@@ -36,9 +33,6 @@ export const EnglishLanguageDefinition: LanguageDefinition = {
 
 export const SwedishLanguageDefinition: LanguageDefinition = {
   keywords: {
-    import: "importera",
-    from: "från",
-    export: "exportera",
     function: "funktion",
     return: "returnera",
     if: "om",
@@ -57,9 +51,6 @@ export const SwedishLanguageDefinition: LanguageDefinition = {
 
 export const GermanLanguageDefinition: LanguageDefinition = {
   keywords: {
-    import: "importieren",
-    from: "aus",
-    export: "exportieren",
     function: "funktion",
     return: "rückkehr",
     if: "ob",
@@ -78,9 +69,6 @@ export const GermanLanguageDefinition: LanguageDefinition = {
 
 export const FrenchLanguageDefinition: LanguageDefinition = {
   keywords: {
-    import: "import",
-    from: "des",
-    export: "export",
     function: "function",
     return: "retourne",
     if: "si",

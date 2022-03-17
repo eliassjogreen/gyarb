@@ -502,9 +502,6 @@ språkets definition ändras beroende på skriftspråk.
 
 | Engelska   | Svenska     | Tyska         | Franska    |
 | ---------- | ----------- | ------------- | ---------- |
-| `import`   | `importera` | `importieren` | `import`   |
-| `from`     | `från`      | `aus`         | `des`      |
-| `export`   | `exportera` | `exportieren` | `export`   |
 | `function` | `funktion`  | `funktion`    | `function` |
 | `return`   | `returnera` | `rückkehr`    | `retourne` |
 | `if`       | `om`        | `ob`          | `si`       |
@@ -677,26 +674,19 @@ sats = villkors_sats
 ### Program
 
 Ett program är en lista utav syntaxelement på toppnivån. Dem enda elementen
-som räknas som detta är funktionsdeklarationer och importer. Funktioner är
+som räknas som detta är funktionsdeklarationer. Funktioner är
 till för att abstahera och binda ihop sammanhängande satser av kod som lätt
-kan användas flera gånger i koden. Importer är till för att använda extern
-kod.
+kan användas flera gånger i koden.
 
 ```EBNF
 funktions_argument    = identifierare
-funktions_deklaration = exportera_nyckelord? funktion_nyckelord
+funktions_deklaration = funktion_nyckelord
                         identifierare
                         "(" funktions_argument
                         ("," funktions_argument)* ")"
                         kod_block
 
-import_element        = identifierare
-importera             = importera_nyckelord
-                        (import_element ("," import_element)*
-                        från_nyckelord)?
-                        sträng
-
-program               = funktions_deklaration | import
+program               = funktions_deklaration
 ```
 
 ## Implementation
@@ -734,7 +724,7 @@ uppdelning.
 
 För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
 översättningar till olika språk se bilaga 5-7. Dessa exempel behandlar värden,
-operationer, funktioner, import och export av funktioner samt algoritmer och
+operationer och funktioner samt algoritmer och
 makron.
 
 # Diskussion och Slutsats
@@ -810,20 +800,17 @@ olika skriftspråksvarianter.
 ## Bilaga 3. Full lexikal EBNF specifikation av programmeringsspråket
 
 ```EBNF
-importera_nyckelord
-från_nyckelord     
-exportera_nyckelord
-funktion_nyckelord 
+funktion_nyckelord
 returnera_nyckelord
-om_nyckelord       
-medan_nyckelord    
-avbryt_nyckelord   
-fortsätt_nyckelord 
-variabel_nyckelord 
-konstant_nyckelord 
-inget_nyckelord    
-sant_nyckelord     
-falskt_nyckelord   
+om_nyckelord
+medan_nyckelord
+avbryt_nyckelord
+fortsätt_nyckelord
+variabel_nyckelord
+konstant_nyckelord
+inget_nyckelord
+sant_nyckelord
+falskt_nyckelord
 
 kommentar           = en_rads_kommentar | fler_rads_kommentar
 en_rads_kommentar   = "//" valfri_karaktär* ny_rad
@@ -900,18 +887,13 @@ sats                  = villkors_sats
                       | uttryck
                       | makro
 
-funktions_deklaration = exportera_nyckelord? funktion_nyckelord
+funktions_deklaration = funktion_nyckelord
                         identifierare
                         "(" identifierare
                         ("," identifierare)* ")"
                         kod_block
 
-importera             = importera_nyckelord
-                        (identifierare ("," identifierare)*
-                        från_nyckelord)?
-                        sträng
-
-program               = funktions_deklaration | import
+program               = funktions_deklaration*
 ```
 
 ## Bilaga 5. Exempelprogram "Hej, Världen!"
@@ -919,8 +901,6 @@ program               = funktions_deklaration | import
 #### Engelska:
 
 ```
-import print from "standard.en"
-
 function entry() {
   print("Hello, World!")
 }
@@ -929,8 +909,6 @@ function entry() {
 #### Svenska:
 
 ```
-importera skriv från "standard.sv"
-
 funktion ingång() {
   skriv("Hej, Världen!")
 }
@@ -939,8 +917,6 @@ funktion ingång() {
 #### Tyska:
 
 ```
-importieren schreiben aus "standard.de"
-
 funktion eingang() {
   schreiben("Hallo, Welt!")
 }
@@ -949,8 +925,6 @@ funktion eingang() {
 #### Franska:
 
 ```
-import écrivez des "standard.fr"
-
 function entrée() {
   écrivez("Bonjour le monde!")
 }
@@ -961,8 +935,6 @@ function entrée() {
 #### Engelska:
 
 ```
-import print from "standard.en"
-
 function entry() {
   print(1 + 2 * (3 / 4) % 8 == 2)
 }
@@ -971,8 +943,6 @@ function entry() {
 #### Svenska:
 
 ```
-importera skriv från "standard.sv"
-
 funktion ingång() {
   skriv(1 + 2 * (3 / 4) % 8 == 2)
 }
@@ -981,8 +951,6 @@ funktion ingång() {
 #### Tyska:
 
 ```
-importieren schreiben aus "standard.de"
-
 funktion eingang() {
   schreiben(1 + 2 * (3 / 4) % 8 == 2)
 }
@@ -991,8 +959,6 @@ funktion eingang() {
 #### Franska:
 
 ```
-import écrivez des "standard.fr"
-
 function entrée() {
   écrivez(1 + 2 * (3 / 4) % 8 == 2)
 }
@@ -1003,8 +969,6 @@ function entrée() {
 #### Engelska:
 
 ```
-import print from "standard.en"
-
 function entry() {
   constant y = 2
   variable x = 0
@@ -1025,8 +989,6 @@ function entry() {
 #### Svenska:
 
 ```
-importera skriv från "standard.sv"
-
 funktion ingång() {
   konstant y = 2
   variabel x = 0
@@ -1047,8 +1009,6 @@ funktion ingång() {
 #### Tyska:
 
 ```
-importieren schreiben aus "standard.de"
-
 funktion eingang() {
   konstante y = 2
   variable x = 0
@@ -1069,8 +1029,6 @@ funktion eingang() {
 #### Franska:
 
 ```
-import écrivez des "standard.fr"
-
 function entrée() {
   constant y = 2
   variable x = 0

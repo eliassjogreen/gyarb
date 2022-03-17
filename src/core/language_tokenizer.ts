@@ -8,9 +8,6 @@ export class LanguageTokenizer extends Tokenizer {
       { type: "comment", pattern: /\/\/.*/, ignore: true },
       { type: "comment", pattern: /\/\*[.\n]*\*\//, ignore: true },
 
-      { type: "import", pattern: language.keywords.import },
-      { type: "from", pattern: language.keywords.from },
-      { type: "export", pattern: language.keywords.export },
       { type: "function", pattern: language.keywords.function },
       { type: "return", pattern: language.keywords.return },
       { type: "if", pattern: language.keywords.if },

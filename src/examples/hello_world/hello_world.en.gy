@@ -1,5 +1,11 @@
-import print from "standard"
+function print(text) {
+  #[js] console.log(text);
+}
 
 function main() {
-  print("Hello, World!");
+  print("Hello, World!")
+}
+
+{
+  main()
 }
