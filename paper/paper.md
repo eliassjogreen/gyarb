@@ -25,9 +25,10 @@ abstract: |
 
 csl: https://www.zotero.org/styles/apa
 bibliography: paper/biblio.bib
+abstract-title: Abstract
 reference-section-title: Källförtäckning
-toc: true
 toc-title: Innehållsförteckning
+toc: true
 documentclass: report
 ---
 
