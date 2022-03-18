@@ -1,5 +1,5 @@
 .PHONY : all
-all: docx pdf
+all: pdf cli
 
 pdf:
 	pandoc                                        \
