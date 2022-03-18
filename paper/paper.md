@@ -337,11 +337,19 @@ syntaxanalysmetoderna i två familjer: "top-down" respektive "bottom-up" metoder
 
 ### Kompilation, transpilation och interpretation
 
-Syntaxträdet kompileras, det vill säga konverteras till maskinkod eller
-interpreteras, det vill säga tolka och utföra instruktionerna angivna
-datastrukturen.
+Syntaxträdets uppgift är att av en kompilator, transpilator eller interpretator
+tolkas för att konvertera källkoden av programmet till maskinkod eller direkt
+köras av datorn ifall det interpreteras.
 
-TODODODOODODODO
+Sättet syntaxträdet tolkas på för alla dessa fall är genom att "vandra" över
+trädets syntaxnoder. Exempelvis skulle ett träd som det i bilaga 2 börja med
+det som först skulle konverteras till maskinkod eller interpreteras, det vill
+säga först grunduttrycken: "`123`", "`-456`" och "`789`". Dessa nummer skulle
+då läggas till i programmets maskinkod, transpilationsmål eller tolkas i
+interpretatorn, sedan skulle operationen "`*`" utföras på dem två senaste värdena
+i programmet för att sedan utföra operationen "`+`". Detta skulle då resultera
+i ett program som räknar ut aritmetiken eller ett värde beroende på om källkoden
+kompileras eller interpreteras.
 
 \pagebreak
 
@@ -796,6 +804,8 @@ olika skriftspråksvarianter.
 | Uttryck         | ![uttryck](paper/data/uttryck.svg)       |
 
 ## Bilaga 2. Syntaxträd utav exempel program i heltals aritmetik
+
+Syntaxträd för `123 + (-456 * 789)` här (cooming soon tm)!
 
 ## Bilaga 3. Full lexikal EBNF specifikation av programmeringsspråket
 
