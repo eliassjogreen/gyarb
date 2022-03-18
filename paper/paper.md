@@ -697,10 +697,20 @@ funktions_deklaration = funktion_nyckelord
 program               = funktions_deklaration
 ```
 
+## Transpilation
+
+Transpilationen av programmeringsspråket görs till målspråket JavaScript, ett
+språk som matchar ganska nära till det specifierade programmeringsspråkets
+syntax och funktion. Exempelvis konverteras funktioner skrivna i språket till
+den dess motsvarighet i JavaScript.
+
 ## Implementation
 
-Vet typ inte vad jag ska skriva här? Jag programmerade lexikalanalysen,
-syntaxanalysen, kompilatorn och översättaren för språket.
+Implementationen av programmeringsspråket gjordes i programmeringsspråket
+TypeScript. Programmets källkod delades upp i lexikalanalys, syntaxanalys
+och transpilation enligt de ovan presenterade rubrikerna och implementerades
+i den ordningen. Sedan skapades även ett program för att använda
+programmeringsspråket med hjälp av en terminal eller kommandtolk.
 
 # Resultat
 
