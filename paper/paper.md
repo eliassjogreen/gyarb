@@ -9,6 +9,7 @@ info: |
 
   Handledare: Sofie Danielsson
 title: Ett internationellt programmeringsspråk
+# subtitle: Hur skulle ett internationellt programmeringsspråk se ut och är det användbart?
 author: Elias Sjögreen
 abstract: |
   Computer programming has gone from being a relatively unusual skill to
@@ -726,7 +727,6 @@ $ gyarb tokenize  --language [en|sv|de|fr] <file>
 $ gyarb parse     --language [en|sv|de|fr] <file>
 $ gyarb compile   --language [en|sv|de|fr] <file>
 $ gyarb run       --language [en|sv|de|fr] <file>
-$ gyarb translate --language [en|sv|de|fr] <file>
 ```
 
 Det resulterande programmeringspråket utvecklat utifrån de principer och idéer
@@ -770,23 +770,33 @@ felöversättningar, försämrad läsbarhet och identifierare som inte går att 
 Det skulle även göra att språket inte är determenistiskt om inte översättningssystemet
 är determenistiskt.
 
-## Icke-latinska skriftspråk
+## Icke-latinska skriftsätt
 
-* Funkar kanske inte med right-to-left språk
-* Funkar kanske inte med språk som använder tecken
+En viktig funktion för vidare internationalisering utav ett programmeringsspråk som det
+utvecklat i denna rapport är även stöd för icke latinska skriftsätt, exempelvis arabiska
+eller kinesiska. Här presenterar sig även problem med symboler och dess lokala betydelse
+samt ifall språket inte skrivs från vänster till höger som så är fallet med just arabiska.
+Detta presenterar ett antal utvecklingspunkter då språksätt varierar mycket och inte lätt
+kan generaliseras till en och samma standard. Komplexiteten med att hantera olika skriftspråk
+kan även ses i olika digitala översättningssystem för webbsidor, applikationer och i självaste
+standarden för digital text: unicode.
 
 ## Läsbarhet
 
-* Vem som helst kan inte läsa det utan en översättare
-* Behöver ens ett språk vara på personens talade eller skrivna språk?
-* Hjälper det inlärningen isf?
+Ännu en punkt den här rapporten inte undersöker är språkets läsbarhet och hur lättanvänt det är. Något
+som är mycket relevant utifrån det kontext att det inte nödvändigtvis är vilket språk nyckelorden
+är skrivna på som spelar roll för ett programmeringsspråks läsbarhet. Detta kan det finnas flera olika
+förklarningar bakom bland annat att på grund av att det är så få nyckelord i de flesta programmeringsspråk
+och att dem få som finns ofta är liknande eller likadana. Detta skulle gå att vidare undersöka då det
+uppenbarligen finns programmerare inte talar eller skriver engelska men ändå programmerar i språk med
+engelska nyckelord. Vidare går det även att undersöka om programmeringsspråk lärs in och används som
+naturliga språk. Även intressant är att undersöka ifall inlärningen av ett programmeringsspråk anpassat för
+ens modersmål är annurlunda ifrån dem traditionella programmeringsspråken som utgår ifrån engelskan.
 
 ## Kontext och nyckelord
 
-* problemet med exempelvis franska här, (hur type `variable` skulle
-ändras om variabelnamnet var maskulint/feminint)
-* Variable namn
-* Nyckelord auf oder sprachen
+Dem flesta språk böjer ord beroende på kontext, exempelvis kontext som genus, konjugation eller numerus. Detta
+kontext skulle då kunna ändra även nyckelordens korrekta form beroende på funktion- eller variabelnamn.
 
 ## Vidare utveckling
 
