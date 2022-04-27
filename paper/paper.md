@@ -31,6 +31,7 @@ reference-section-title: Källförtäckning
 toc-title: Innehållsförteckning
 toc: true
 documentclass: report
+geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
 ---
 
 \pagebreak
@@ -40,47 +41,39 @@ documentclass: report
 Datorprogrammering har gått från att vara en relativt ovanlig färdighet till
 något fler och fler människor lär sig, för jobb och som en hobby. Industrin
 och den globala efterfrågan för programmerare ökar i takt med internet och i
-princip all teknologi, från din mikrovågsugn till dator till det komplexa
+princip all teknologi, från din mikrovågsugn och dator till det komplexa
 system som styr exempelvis elnätet. Detta är inte heller något lokalt fenomen,
 digitaliseringen är global men majoriteten av programmeringsspråken som är ett
 väsentligt verktyg för denna teknologiska utveckling är fortfarande begränsade
 av en språkbarriär då de flesta programmeringsspråk använder sig av engelskan.
 Denna rapport undersöker möjligheten att skapa en specifikation samt prototyp
-implementation av ett programmeringsspråk med mål att vara översättningsbart
-mellan olika skriftspråk.
+av ett programmeringsspråk med mål att vara översättnings- och användbart mellan
+olika skriftspråk.
 
 # Bakgrund
 
 ## Begreppslista
 
+**Program** eller **datorprogram**
+: är vilket som helst program som en dator kan tolka och genomföra. Detta innefattar maskinkod men även källkod och olika typer av plattformsoberoende kod.
 
 **Programmeringspråk** eller **programspråk**
-: är en representation i text eller
-visuellt av de instruktioner som man önskar ska kompileras för att sedan köras,
-antingen som maskinkod, mellanrepresentation eller tolkas i en interpretator.
+: är ett skriftligt, formellt språk för att skriva källkod. Ofta är ett programmeringsspråk i sig ett datorprogram som kan översätta kod från något som är läsbart av en människa till något en dator kan köra.
 
 **Maskinkod**
-: är den binära kod, bestående av olika instruktioner som en dator
-direkt kan tolka och genomföra.
-
-**Plattformsoberoende kod** eller **mellanrepresentation**
-: är en typ av kod som
-kan köras på en virtuell maskin på datorn istället för att köras direkt på
-datorn genom maskinkod.
-
-**Källkod** eller **källprogram**
-: är ett datorprogram representerat som det
-programmeringsspråk det från början var skrive i.
-
-**Program** eller **datorprogram**
-: är vilket som helst program som en dator kan
-tolka och genomföra. Detta innefattar maskinkod men även källkod och olika typer
-av plattformsoberoende kod.
+: är den binära kod, det vill säga de ettor och nollor, som representerar olika instruktioner som en dator direkt kan tolka och genomföra.
 
 **Virtuell maskin**
-: är en virtuell dator som i programmeringssyfte används för
-att skapa en miljö där plattformsoberoende kod eller olika
-mellanrepresentationer kan köras så som om dess kod var äkta maskinkod.
+: är en virtuell dator som i programmeringssyfte används för att skapa en miljö där plattformsoberoende kod eller olika mellanrepresentationer kan köras så som om dess kod var äkta maskinkod.
+
+**Plattformsoberoende kod** eller **mellanrepresentation**
+: är en typ av kod som kan köras på en virtuell maskin på datorn istället för att köras direkt på datorn genom maskinkod.
+
+**Källkod** eller **källprogram**
+: är ett datorprogram representerat som det programmeringsspråk det från början var skrivet i.
+
+**Dator** eller **datorprocessorn**
+: kan, likt en kock som följer ett recept eller en chaufför som följer en karta tolka och köra olika instruktioner som den har fått, dessa instruktioner är maskinkod.
 
 **Interpretator** eller **programtolk**
 : är ett datorprogram som tolkar och
@@ -115,26 +108,27 @@ skrivna i maskinkod snabbt ökar för större program, detta på grund av
 maskinkodens närhet till hårdvaran som tolkar programmet. För att tackla detta
 problem så har olika programmeringsspråk skapats för att göra programmeringen av
 datorer mer abstrakt och därmed möjliggjort mer avancerad, effektivare och
-enklare programmering.
+enklare programmering [@aho_1986].
 
 Källkod är den centrala delen i ett programmeringsspråk som representerar det
 som ett datorprogram gör och är skriven för hand. Vanligtvis består källkoden av
 olika kodord, operationer, uttryck och värden i en text. Dessa kodord,
 operationer, uttryck och värden tolkas sedan på olika sätt av
-programmeringsspråket för att till vara körbart av en dator som maskinkod.
+programmeringsspråket för att till vara körbart av en dator som maskinkod
+[@wikipedia_kallkod].
 
 När man talar om programmeringsspråk talar man ofta om olika hög- eller
 lågnivåspråk. Detta är ett koncept som används för att definiera hur nära
 källkoden är till den slutgiltiga maskinkoden. Historiskt tidiga
 programmeringsspråk är ofta närmare maskinkod och skulle därmed kunna kallas
-låga medan moderna ofta är väldigt abstraherade från den faktiska maskinkoden
-som körs och därmed är högnivåspråk. Fördelen med lågnivåspråk är just dess
-närhet till hur en dator fungerar och tänker vilket gör att det går att skriva
-mycket effektiv kod, ett bra exempel på ett sådant språk är assembler
-[@nationalencyklopedin_assemblersprak] vilket är ett samlingsnamn för språk där
-maskininstruktioner är översatta till ord och värden för olika hårdvara. Till
-skillnad från lågnivåspråk är högnivåspråk mycket enklare för utvecklaren att
-skriva samt förstå och är de vanligast använda [@tiobe_index_2021;
+låga medan moderna är mer abstraherade, det vill säga mer abstrakta än den
+faktiska maskinkoden som körs och därmed är högnivåspråk. Fördelen med
+lågnivåspråk är just dess närhet till hur en dator fungerar och tänker vilket
+gör att det går att skriva mycket effektiv kod, ett bra exempel på ett sådant
+språk är assembler [@nationalencyklopedin_assemblersprak] vilket är ett
+samlingsnamn för språk där maskininstruktioner är översatta till ord och värden
+för olika hårdvara. Till skillnad från lågnivåspråk är högnivåspråk mycket enklare
+för utvecklaren att skriva samt förstå och är de vanligast använda [@tiobe_index_2021;
 @pypl_popularity_of_programming_language_2021].
 
 ## En global efterfrågan för programmerare
@@ -142,12 +136,9 @@ skriva samt förstå och är de vanligast använda [@tiobe_index_2021;
 Programmering som yrke har under de senaste hundra åren växt fram otroligt
 snabbt och behovet för mjukvaruutvecklare är idag mycket stort. I endast Sverige
 beräknas det saknas omring 70000 personer för att möta det växande behovet inom
-IT branshen [@it_telekomforetagen_it_kompetensbristen_2020] till år 2024. I en
-artikel från mjukvaruutvecklarföretaget Future Processing
-[@future_processing_2021] skriver dom om den förväntade utvecklingen samt
-nuvarande efterfrågan för utvecklare. I år, 2021, uppskattas det finnas omkring
-26,9 miljoner mjukvaruutvecklare globalt och ökas till kring 45 miljoner
-år 2030.
+IT branshen [@it_telekomforetagen_it_kompetensbristen_2020] till år 2024.
+År 2021 uppskattades det finna omkring 26,9 miljoner mjukvaruutvecklare globalt,
+ett antal som uppskattas öka till kring 45 miljoner år 2030 [@future_processing_2021].
 
 I en årlig undersökning av internet- och mjukvaruutvecklingsforumet Stack
 Overflow har man frågat 80000 utvecklare, studenter och andra användare om bland
@@ -155,17 +146,20 @@ annat utbilding, land, erfarenhet och andra relevanta frågor
 [@stack_overflow_2021]. I undersökningens statistik om vart
 undersökningsdeltagarna bor är det endast kring 27,31%^[Inräknat i denna
 beräkning är USA med 18,33%, Stor Brittianien med 5,37% samt Kanada med 3,61%.]
-som bor i länder där engelska är ett officielt förstaspråk. av dom mer än 37
+som bor i länder där engelska är ett officielt förstaspråk. Av dem mer än 37
 olika programmeringsspråken som det deltagarna i undersökningen har använt sig
 av som svar i olika frågor är endast ett språk^[Programmeringsspråket APL] ej
 baserat på engelskan.
 
 Att programmeringsspråk inte vanligtvis är skrivna i användarens modersmål utan
 på engelska skulle kunna påverka spridningen, utbildningen och användingen av
-programmeringsspråk i icke engelskspråkiga länder^[Det fjärde, åttånde och
-tionde Globala målet: god utbildning för alla, anständiga arbetsvillkor och
-ekonomisk tillväxt och minskad ojämlikhet. Något mer relevant nu än någonsin med
-tanke på den statistik som finns kring den växande IT branschen.].
+programmeringsspråk i icke engelskspråkiga länder. I detta fall skulle det framförallt
+vara det fjärde globala målet som defineras som säkerställandet av en inkluderande och
+likvärdig utbildning av god kvalitet och främja livslångt lärande för alla
+[@globala_malen_4; @undp_goal_4]. Det åttånde globala målet anständiga arbetsvillkor
+och ekonomisk tillväxt skulle kunna vara relevant [@globala_malen_8; @undp_goal_8] där
+fokus framförallt ligger på målets verkan för inkluderande och ekonomisk tillväxt, något
+som gåt att koppla till den globala efterfrågan för programmerare.
 
 ## Block- och flödesprogrammering
 
@@ -174,8 +168,8 @@ det ett antal olika tillvägagångssätt, alla med olika för- och nackdelar.
 
 Blockprogrammering är bland det vanligaste av de olika typerna av
 översättningsbara programmeringsspråk. Dessa språk är ofta till för
-utbildningssyfte och fungerar på sätt att de består av block, liknande dom i
-Lego. Blocken kan ha olika funktioner som till exempel värden, uttryck eller
+utbildningssyfte och fungerar på sätt att de består av block, liknande Lego.
+Blocken kan ha olika funktioner som till exempel värden, uttryck eller
 olika satser. Man bygger ett program genom att koppla ihop dessa block i en
 specialbyggd programmeringsmiljö. De kändaste och mest använda
 programmeringsspråket [@scratch_statistics] implementerat på detta vis är
@@ -198,7 +192,7 @@ blockprogrammering i det att etiketterna och texterna på noderna är
 
 Ett annat alternativ till visuella programmeringsspråk så som de block- och
 flödesbaserade språken tidigare nämnda är ett mer traditionellt textbaserat
-språk. Det finns många textbaserade programmeringsspråk varav dom flesta är av
+språk. Det finns många textbaserade programmeringsspråk är att dem flesta är av
 den typen men väldigt få uppfyller kravet att vara översättningsbart. Vad som
 menas med ett textbaserat programmeringsspråk är ett språk varav programmen
 består av vanliga tecken och bokstäver men som följer en viss grammatik och
@@ -213,14 +207,14 @@ blindskrift. Detta ledde till att standarden antogs och accepterades av både
 UNESCOs organisation IFIP samt Sovjets och senare Rysslands
 standardorganisation.
 
-Citrine [@citrine_2021] är ett programmeringsspråk där lokalisation är en av
+Citrine är ett programmeringsspråk där lokalisation är en av
 kärnfunktionerna vilket har lett till dess översättning till 111 olika naturliga
 språk. Språket lokaliserar nyckelord, nummer och skiljetecken. För att
 konvertera mellan olika språk kan användaren själv översätta programmet men
 inget inbyggt verktyg i programmet verkar göra detta åt användaren. Detta då
 alla olika naturliga språk som Citrine stödjer publiceras som separata program
 utan vetskapen om hur man skulle översätta ett program från ett till ett annat
-naturligt språk.
+naturligt språk [@citrine_2021].
 
 | Skriftspråk | Exempelkod                       |
 | ----------- | -------------------------------- |
@@ -232,11 +226,11 @@ Scheme [@scheme_2003] är ännu ett standardiserat programmeringsspråk med
 möjlighet till internationalisation. Detta är dock inte en kärnfunktion i
 språket utan har istället utvecklats av användare som har använt språkets
 flexibilitet för att skapa ett bibliotek [@metaphorm_2021] där olika
-översättningar finns. Eftersom olika språk kan laddas dynamisk går Scheme
-program att vara flerspråkiga. Detta leder dock till den nackdelen att språket
+översättningar finns. Eftersom olika språk kan laddas in dynamisk går det att skriva
+flerspråkiga program i Scheme. Detta leder dock till den nackdelen att programmeringsspråket
 ej enkelt kan översättas då flera olika språk skulle kunna existera i samma
-program samt det faktum att språket inte är byggt med översättning, lokalisation
-eller internationalisation som en kärnfunktion.
+program samt det faktum att programmeringsspråket inte är byggt med översättning,
+lokalisation eller internationalisation som en kärnfunktion.
 
 | Skriftspråk | Exempelkod                |
 | ----------- | ------------------------- |
@@ -248,10 +242,17 @@ eller internationalisation som en kärnfunktion.
 
 Det sista typen som är relevant som ett alternativ för att skapa ett
 översättningsbart eller internationellt programmeringsspråk är den av vad jag
-väljer att kalla symbolprogrammeringsspråk. Detta då dom använder sig av
+väljer att kalla symbolprogrammeringsspråk. Detta då dem använder sig av
 symboler istället för nyckelord vilket leder till att det inte är bundet till
 ett naturligt språk. Ett exempel på ett sådant språk är exempelvis APL
 [@iverson_1962] men även helt vanlig matematisk notation [@helmenstine_2019].
+
+En kritik av dessa språk är dess dåliga anpassning till använding digitalt vilket
+i matematisk notations fall har lett till ett antal olika alternativ för att skriva
+ut matematik på datorn så som det traditionellt görs på papper [@ISO40314; @latex_math; @eqn_math].
+Denna kritik kan även dras til APL där advancerade symboler som inte lätt går att
+skriva på ett vanligt tangentbord används vilket leder till svårigheter att både läsa
+och skriva för någon som inte redan har bekantat sig med språkets symboler [@apl_typing_glyphs].
 
 ## Ett programmeringsspråks uppbyggnad
 
@@ -305,9 +306,9 @@ Extended Backus-Naur-form @pattis_2015 eller informellt genom en skriftlig
 beskrivning eller instruktion.
 
 Grammatiken av exempelvis ett formellt språk som beskriver matematisk heltals
-aritmetik skulle följande formell grammatik gälla, i detta fall i form av en
-EBNF definition samt en informell skriftlig definition som förklarar EBNF
-definitionen. Även en visuell representation finns i bilaga 1.
+aritmetik skulle kunna defineras av följande: en form av EBNF definition samt
+en informell skriftlig definition som förklarar EBNF definitionen. Även en
+visuell representation finns i bilaga 1.
 
 ```EBNF
 siffra     = "0" | "1" | "2" | "3" | "4"
@@ -324,7 +325,7 @@ Ovan definition går att beskriva som följande med ord:
 - En `siffra` defineras som någon utav tecknen för siffrorna 0 till 9
 - Ett `nummer` defineras som först ett valfritt minus tecken följt utav en eller
   flera siffror
-- En `operator` defineras som ett plus, minus, gånger eller divisions tecken
+- En `operator` defineras som ett plus, minus, gånger eller divisionstecken
 - En `operation` defineras som ett uttryck följt av en operator och sedan ett
   till uttryck
 - En `gruppering` defineras som ett uttryck inom paranteser
@@ -484,23 +485,23 @@ en_rads_makro       = "#(" makro_identifierare ")" "{" makro_värde "}"
 Operatorerna som är definerade för språket agerar endast på nummer- och
 booleskvärden på samma sätt som dess motsvarigheter i matematiken.
 
-| Symbol       | Beskrivning                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------- |
-| `=`          | Anger en variabels värde                                                                                |
-| `+`          | Addition vid operationer med två nummervärde, annars för att markera att ett nummervärde är positivt    |
-| `-`          | Subtraktion vid operationer med två nummervärde, annars för att markera att ett nummervärde är negativt |
-| `*`          | Multiplikation av två nummervärden                                                                      |
-| `/`          | Division av två nummervärden                                                                            |
-| `%`          | Restprodukten av två nummervärden vid division                                                          |
-| `==`         | Jämför två värden för likhet                                                                            |
-| `!=`         | Jämför två värden för olikhet                                                                           |
-| `<`          | Jämför ifall det första nummervärdet är mindre än det andra nummervärdet                                |
-| `<=`         | Jämför ifall det första nummervärdet är mindre eller lika med än det andra nummervärdet                 |
-| `>`          | Jämför ifall det första nummervärdet är större än det andra nummervärdet                                |
-| `>=`         | Jämför ifall det första nummervärdet är större eller lika med än det andra nummervärdet                 |
-| `!`          | Inverterar en boolesk, dvs gör om sanna booleskvärden till falska och falska till sanna                 |
-| `||`         | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall något av värdena är sanna   |
-| `&&`         | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall båda värdena är sanna       |
+| Symbol | Beskrivning                                                                                             |
+| ------ | ------------------------------------------------------------------------------------------------------- |
+| `=`    | Anger en variabels värde                                                                                |
+| `+`    | Addition vid operationer med två nummervärde, annars för att markera att ett nummervärde är positivt    |
+| `-`    | Subtraktion vid operationer med två nummervärde, annars för att markera att ett nummervärde är negativt |
+| `*`    | Multiplikation av två nummervärden                                                                      |
+| `/`    | Division av två nummervärden                                                                            |
+| `%`    | Restprodukten av två nummervärden vid division                                                          |
+| `==`   | Jämför två värden för likhet                                                                            |
+| `!=`   | Jämför två värden för olikhet                                                                           |
+| `<`    | Jämför ifall det första nummervärdet är mindre än det andra nummervärdet                                |
+| `<=`   | Jämför ifall det första nummervärdet är mindre eller lika med än det andra nummervärdet                 |
+| `>`    | Jämför ifall det första nummervärdet är större än det andra nummervärdet                                |
+| `>=`   | Jämför ifall det första nummervärdet är större eller lika med än det andra nummervärdet                 |
+| `!`    | Inverterar en boolesk, dvs gör om sanna booleskvärden till falska och falska till sanna                 |
+| `      |                                                                                                         | ` | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall något av värdena är sanna |
+| `&&`   | Boolesk eller operation som tar två booleskvärden och returnerar sant ifall båda värdena är sanna       |
 
 EBNF definitionen är densamma som symbolerna i tabellen.
 
@@ -510,19 +511,19 @@ Nyckelorden i programmeringsspråket används för att markera olika uttryck
 och satser. Dessa nyckelord är dock skriftspråksspecifika vilket gör att
 språkets definition ändras beroende på skriftspråk.
 
-| Engelska   | Svenska     | Tyska         | Franska    |
-| ---------- | ----------- | ------------- | ---------- |
-| `function` | `funktion`  | `funktion`    | `function` |
-| `return`   | `returnera` | `rückkehr`    | `retourne` |
-| `if`       | `om`        | `ob`          | `si`       |
-| `while`    | `medan`     | `während`     | `pendant`  |
-| `break`    | `avbryt`    | `abbrechen`   | `casse`    |
-| `continue` | `fortsätt`  | `fortsetzen`  | `continue` |
-| `variable` | `variabel`  | `variable`    | `variable` |
-| `constant` | `konstant`  | `konstante`   | `constant` |
-| `none`     | `inget`     | `null`        | `rien`     |
-| `true`     | `sant`      | `wahr`        | `vrai`     |
-| `false`    | `falskt`    | `falsch`      | `faux`     |
+| Engelska   | Svenska     | Tyska        | Franska    |
+| ---------- | ----------- | ------------ | ---------- |
+| `function` | `funktion`  | `funktion`   | `function` |
+| `return`   | `returnera` | `rückkehr`   | `retourne` |
+| `if`       | `om`        | `ob`         | `si`       |
+| `while`    | `medan`     | `während`    | `pendant`  |
+| `break`    | `avbryt`    | `abbrechen`  | `casse`    |
+| `continue` | `fortsätt`  | `fortsetzen` | `continue` |
+| `variable` | `variabel`  | `variable`   | `variable` |
+| `constant` | `konstant`  | `konstante`  | `constant` |
+| `none`     | `inget`     | `null`       | `rien`     |
+| `true`     | `sant`      | `wahr`       | `vrai`     |
+| `false`    | `falskt`    | `falsch`     | `faux`     |
 
 EBNF definitionen är densamma som orden i kolumnen för det skriftspråk man
 använder.
