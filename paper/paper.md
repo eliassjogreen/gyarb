@@ -98,6 +98,8 @@ kunna arbeta med icke-primitiva datavärden och för att förenkla användandet.
 
 ---
 
+\pagebreak
+
 ## Programmeringsspråk
 
 I grunden kan alla datorprocessorer tolka vissa instruktioner vid namn maskinkod
@@ -177,8 +179,8 @@ Scratch [@scratch_about], originellt utvecklat av MIT senare Scratch Foundation.
 Detta språk utvecklades i utbildningssyfte med översättning och lättanvändning i
 åtanke och dess målgrupp är framförallt grundskolebarn.
 
-Flödesprogrammeringsspråk är egentligt på många sätt lika de block baserade
-programmeringsspråk i att dem använder sig av visuella block. I ett
+Flödesprogrammeringsspråk är på många sätt lika de block baserade
+programmeringsspråk i det att dem använder sig av visuella block. I ett
 flödesbaserat språk är dock dessa block inte sekventiella utan ihopkopplade med
 sladdar som representerar ett värdes flöde genom programmet. Spelmotorer som
 Unreal [@unreal_scripting], Unity [@unity_scripting] och Godot
@@ -187,6 +189,13 @@ använder sig av nodbaserad programmering för ett enklare alternativ till
 traditionell textbaserad programmering. Detta alternativ är likt
 blockprogrammering i det att etiketterna och texterna på noderna är
 översättningsbara.
+
+Något som alla dessa block- och flödesprogrammeringsspråk har gemensamt är dess
+använding av visuella programmeringssmiljöer där man på olika sätt kombinerar
+byggstenarna för respektive språk, något som inte traditionellt finns för textbaserade
+programmeringsspråk.
+
+![Programmeringsspråkets Scratchs visuella programmeringsmiljö](paper/data/scratch.jpg)
 
 ## Textprogrammering
 
@@ -206,6 +215,8 @@ franska, bulgariska, kinesiska och senare japanska samt en för dess använding 
 blindskrift. Detta ledde till att standarden antogs och accepterades av både
 UNESCOs organisation IFIP samt Sovjets och senare Rysslands
 standardorganisation.
+
+\pagebreak
 
 Citrine är ett programmeringsspråk där lokalisation är en av
 kärnfunktionerna vilket har lett till dess översättning till 111 olika naturliga
@@ -295,6 +306,8 @@ uppbyggnad på ett mer konkret sätt än en lista av lexikala element. Detta "tr
 byggs upp utav olika syntaxnoder där varje nod är som en förgrening alternativt
 slutet på en gren i ett träd.
 
+![Fullständiga processen för att skapa ett slutgiltigt syntaxträd för exempel källkoden "`(visa "Hej Världen")`"](paper/data/exempel_lexikal_och_syntax.png)
+
 ### Formell grammatik
 
 Ett formellt språk eller system defineras som en delmängd av en ändlig
@@ -333,10 +346,12 @@ Ovan definition går att beskriva som följande med ord:
 
 Med hjälp av denna definiton går det att analysera en lista av tecken eller
 lexikala element för att bygga ett syntaxträd. Exempelvis skulle ett uttryck som
-"`123 + (-456 * 789)`" skapa det syntaxträd som finns i bilaga 2. Hur man
-genomför denna analys finns det ett antal olika sätt men vanligtvis delar man in
+"`123 + (-456 * 789)`" skapa det syntaxträd som finns i figur \ref{formell_grammatik_syntaxträd}.
+Hur man genomför denna analys finns det ett antal olika sätt men vanligtvis delar man in
 syntaxanalysmetoderna i två familjer: "top-down" respektive "bottom-up" metoder
 [@lunell_1991].
+
+![Syntaxträd för källkoden "`123 + (-456 * 789)`" analyserad med hjälp av ovan definerad formell grammatik \label{formell_grammatik_syntaxträd}](paper/data/exempel_formell_grammatik_syntaxträd.png)
 
 ### Kompilation, transpilation och interpretation
 
@@ -345,8 +360,8 @@ tolkas för att konvertera källkoden av programmet till maskinkod eller direkt
 köras av datorn ifall det interpreteras.
 
 Sättet syntaxträdet tolkas på för alla dessa fall är genom att "vandra" över
-trädets syntaxnoder. Exempelvis skulle ett träd som det i bilaga 2 börja med
-det som först skulle konverteras till maskinkod eller interpreteras, det vill
+trädets syntaxnoder. Exempelvis skulle ett träd som det i \ref{formell_grammatik_syntaxträd}
+börja med det som först skulle konverteras till maskinkod eller interpreteras, det vill
 säga först grunduttrycken: "`123`", "`-456`" och "`789`". Dessa nummer skulle
 då läggas till i programmets maskinkod, transpilationsmål eller tolkas i
 interpretatorn, sedan skulle operationen "`*`" utföras på dem två senaste värdena
@@ -380,9 +395,9 @@ programmeringsspråk och dess beståndsdelar skulle utgöra ytterligare problem 
 
 ## Verktyg och implementationsspråk
 
-Det programmerings som valdes som implementationsspråk för prototyp
-implementationen av programmeringsspråket var TypeScript [@bierman_2014], ett
-JavaScript baserat språk med tillägget av explicita datatyper. Anledningen till
+Det programmeringsspråk som valdes som implementationsspråk för prototyp
+implementationen av arbetet var TypeScript [@bierman_2014], ett JavaScript
+baserat språk med tillägget av explicita datatyper. Anledningen till
 detta val var en avvägning mellan simplicitet, abstraktion, prestanda och
 möjligheten till plattformsoberoende kod för att göra språket körbart även i en
 webbläsare. Stöd för körning utav programmeringsspråket i både webbläsare och
@@ -394,7 +409,7 @@ Programmeringsspråkets lexikal-, syntax- och semantiskaanalys planerades och
 specifierades med hjälp av EBNF. Även en kompilator till JavaScript samt en
 översättare planerades. JavaScript valdes som kompilationsmål på grund av dess
 liknande struktur till det planerade språket samt dess stöd på dem flesta
-datorplatformerna.
+datormiljöerna.
 
 Översättaren planerades fungera endast på lexikal nivå, det vill säga den är
 kontextfri och ej bryr sig om exempelvis ordning eller elementtyp. Detta går
@@ -408,7 +423,8 @@ vanligtvis är kontextfria^[Se underrubriken
 
 En specifikation som beskriver programmeringsspråkets syntax och grammatik
 skapades i EBNF format, delar av denna specifikation är dock beroende utav det
-skriftspråk som önskas användas för språkets nyckelord.
+skriftspråk som önskas användas för språkets nyckelord. Denna specifikation finns
+beskriven samt definerad i följande underrubriker.
 
 ### Värden
 
@@ -541,6 +557,10 @@ binärt_uttryck = uttryck binär_operator uttryck
 unärt_uttryck  = unär_operator uttryck
 ```
 
+Dessa uttryck är exempelvis addition, eller negation utav andra uttryck: "`a + b`"
+eller "`-123`" där uttrycket är kombinationen av ett eller två underliggande uttryck
+samt en operator.
+
 #### Villkorsuttryck
 
 Villkorsuttryck används för att i uttryck välja antingen ett uttryck eller det
@@ -559,7 +579,7 @@ villkors_uttryck  = om_nyckelord villkor
 
 #### Funktionsanrop
 
-Funktionsanrop är likt funktioner i matten anrop till tidigare definerade
+Funktionsanrop är likt funktioner i matematiken anrop till tidigare definerade
 funktioner, dessa anrop kan ta noll eller flera uttryck som argument.
 
 ```EBNF
@@ -684,7 +704,7 @@ sats = villkors_sats
 
 ### Program
 
-Ett program är en lista utav syntaxelement på toppnivån. Dem enda elementen
+Ett program är en lista utav syntaxelement på toppnivån. De enda elementen
 som räknas som detta är funktionsdeklarationer. Funktioner är
 till för att abstahera och binda ihop sammanhängande satser av kod som lätt
 kan användas flera gånger i koden.
@@ -700,13 +720,6 @@ funktions_deklaration = funktion_nyckelord
 program               = funktions_deklaration
 ```
 
-## Transpilation
-
-Transpilationen av programmeringsspråket görs till målspråket JavaScript, ett
-språk som matchar ganska nära till det specifierade programmeringsspråkets
-syntax och funktion. Exempelvis konverteras funktioner skrivna i språket till
-den dess motsvarighet i JavaScript.
-
 ## Implementation
 
 Implementationen av programmeringsspråket gjordes i programmeringsspråket
@@ -714,6 +727,18 @@ TypeScript. Programmets källkod delades upp i lexikalanalys, syntaxanalys
 och transpilation enligt de ovan presenterade rubrikerna och implementerades
 i den ordningen. Sedan skapades även ett program för att använda
 programmeringsspråket med hjälp av en terminal eller kommandtolk.
+
+Specifikationen skrevs samtidigt som programmeringen utav både lexikalanalysen
+och syntaxanalysen för att underlätta processen och därmed anpassa specifikationen
+för att inte överkomplicera programmeringen.
+
+### Transpilation
+
+Transpilationen av programmeringsspråket görs till målspråket JavaScript, ett
+språk som matchar ganska nära till det specifierade programmeringsspråkets
+syntax och funktion. Exempelvis konverteras funktioner skrivna i språket till
+den dess motsvarighet i JavaScript.
+
 
 # Resultat
 
@@ -739,7 +764,7 @@ källkoden.
 
 Programmeringsspråket definerades i definitionsformatet EBNF och dess fulla
 lexikala och syntax specifikation kan finnas i bilaga 3 respektive 4. Dessa
-två specifikationer är uppdelade för att reflekter programmets interna
+två specifikationer är uppdelade för att reflektera programmets interna
 uppdelning.
 
 För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
@@ -764,7 +789,7 @@ identifierare med en översättning för varje skriftspråk programmet är imple
 för.
 
 Detta skulle vara möjligt med hjälp av en ny grammatik eller genom användingen
-av makron. Ett annat alternativ är att använde en översättningstjänst för att
+av makron. Ett annat alternativ är användningen av en översättningstjänst för att
 på så sätt automatiskt översätta identifierare. Detta kräver dock vidare undersökning
 då ett automatiserat system skulle skapa en mängd nya problem, bland annat
 felöversättningar, försämrad läsbarhet och identifierare som inte går att översätta.
@@ -799,6 +824,10 @@ ens modersmål är annurlunda ifrån dem traditionella programmeringsspråken so
 Dem flesta språk böjer ord beroende på kontext, exempelvis kontext som genus, konjugation eller numerus. Detta
 kontext skulle då kunna ändra även nyckelordens korrekta form beroende på funktion- eller variabelnamn.
 
+## Globala målen och språkets användbarhet
+
+Skriv!
+
 ## Vidare utveckling
 
 För att vidare utveckla studieområdet skulle en kvantitativ studie utföras.
@@ -816,20 +845,15 @@ olika skriftspråksvarianter.
 
 ## Bilaga 1. Diagram av en formell grammtik för heltals aritmetik
 
-| Delmängd/Nodtyp | Diagram                                  |
-| --------------- | ---------------------------------------- |
-| Siffra          | ![siffra](paper/data/siffra.svg)         |
-| Nummer          | ![nummer](paper/data/nummer.svg)         |
-| Operator        | ![operator](paper/data/operator.svg)     |
-| Operation       | ![operation](paper/data/operation.svg)   |
-| Gruppering      | ![gruppering](paper/data/gruppering.svg) |
-| Uttryck         | ![uttryck](paper/data/uttryck.svg)       |
+| Delmängd/Nodtyp | Siffra | Nummer | Operator |
+| --------------- | ------ | ------ | -------- |
+| | ![siffra](paper/data/siffra.svg) | ![nummer](paper/data/nummer.svg) | ![operator](paper/data/operator.svg) |
 
-## Bilaga 2. Syntaxträd utav exempel program i heltals aritmetik
+| Delmängd/Nodtyp | Operation | Gruppering | Uttryck |
+| --------------- | --------- | ---------- | ------- |
+| | ![operation](paper/data/operation.svg) | ![gruppering](paper/data/gruppering.svg) | ![uttryck](paper/data/uttryck.svg) |
 
-Syntaxträd för `123 + (-456 * 789)` här (cooming soon tm)!
-
-## Bilaga 3. Full lexikal EBNF specifikation av programmeringsspråket
+## Bilaga 2. Full lexikal EBNF specifikation av programmeringsspråket
 
 ```EBNF
 funktion_nyckelord
@@ -876,7 +900,7 @@ identifierare       = unicode_bokstav
                     |  unicode_nummer)*
 ```
 
-## Bilaga 4. Full syntax EBNF specifikation av programmeringsspråket
+## Bilaga 3. Full syntax EBNF specifikation av programmeringsspråket
 
 ```EBNF
 villkors_uttryck      = om_nyckelord uttryck
@@ -928,7 +952,7 @@ funktions_deklaration = funktion_nyckelord
 program               = funktions_deklaration*
 ```
 
-## Bilaga 5. Exempelprogram "Hej, Världen!"
+## Bilaga 4. Exempelprogram "Hej, Världen!"
 
 #### Engelska:
 
@@ -962,7 +986,7 @@ function entrée() {
 }
 ```
 
-## Bilaga 6. Exempelprogram uttryck
+## Bilaga 5. Exempelprogram uttryck
 
 #### Engelska:
 
@@ -996,7 +1020,7 @@ function entrée() {
 }
 ```
 
-## Bilaga 7. Exempelprogram satser
+## Bilaga 6. Exempelprogram satser
 
 #### Engelska:
 

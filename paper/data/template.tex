@@ -451,6 +451,9 @@ $else$
 {\let\newpage\relax\maketitle}
 $endif$
 $if(abstract)$
+$if(abstract-title)$
+\renewcommand{\abstractname}{$abstract-title$}
+$endif$
 \begin{abstract}
 $abstract$
 \end{abstract}

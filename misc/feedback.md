@@ -2,17 +2,17 @@
 
 ## Muntligt från Sofie
 
-[ ] förklara med bilder
+[x] förklara med bilder
 [x] vet vad jag håller på med
 [ ] måste förklara bättre för målgruppen
 [x] ordningen på begreppslista
-[ ] globala målen mer plats
+[x] globala målen mer plats
 [ ] genomförande framgår inte hur jag gått till väga
 [ ] vad jag faktiskt gör: "i mitt program", vad är sakerna jag gör specikt
 [ ] steg 1,2,3,4...
 [ ] lägg till i vad jag har gjort
 [ ] förklara med ord på resultat, flytta bilagorna till resultat
-[ ] bilder och diagram i text
+[x] bilder och diagram i text
 [ ] diskussion och slutsats, koppla till målen
 [ ] in med presentation
 
