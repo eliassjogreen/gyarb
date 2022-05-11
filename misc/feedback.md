@@ -11,7 +11,7 @@
 [ ] vad jag faktiskt gör: "i mitt program", vad är sakerna jag gör specikt
 [ ] steg 1,2,3,4...
 [ ] lägg till i vad jag har gjort
-[ ] förklara med ord på resultat, flytta bilagorna till resultat
+[x] förklara med ord på resultat, flytta bilagorna till resultat
 [x] bilder och diagram i text
 [ ] diskussion och slutsats, koppla till målen
 [ ] in med presentation

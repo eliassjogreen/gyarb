@@ -758,19 +758,89 @@ $ gyarb run       --language [en|sv|de|fr] <file>
 Det resulterande programmeringspråket utvecklat utifrån de principer och idéer
 presenterade i bakgrunden och frågeställningen stödjer fyra skriftspråk med
 hjälp av en abstraktion av lexikalanalysen som tillåter att modulärt byta ut
-nyckelorden. Detta tillåter översättning mellan de olika stödda skriftspråken
+nyckelorden. Detta tillåter användingen av samtliga stödja skriftspråken
 samt en singulär syntaxanalysator och kompilator oberoende av den inmatade
 källkoden.
+
+## Definition
 
 Programmeringsspråket definerades i definitionsformatet EBNF och dess fulla
 lexikala och syntax specifikation kan finnas i bilaga 3 respektive 4. Dessa
 två specifikationer är uppdelade för att reflektera programmets interna
 uppdelning.
 
+## Exempel
+
 För att demonstrera hur programmeringsspråket ser ut, dess läsbarhet och
-översättningar till olika språk se bilaga 5-7. Dessa exempel behandlar värden,
-operationer och funktioner samt algoritmer och
-makron.
+översättningar till olika språk se bilagorna 5 och 6 och även i filkatalogen
+`src/examples` i källkoden. Dessa exempel behandlar värden, operationer
+och funktioner samt algoritmer och makron.
+
+\pagebreak
+
+### Exempelprogram "Hej, Världen!"
+
+Nedan defineras källkoden för ett exempelprogram vars mål är att skriva texten
+"`Hej, Världen!`" på respektive skriftspråk i kommandotolken. För att exekvera
+programmet körs det kommando som defineras längst ned i kodblocket under de kommande
+underrubrikerna. Resultatet som sedan skrivs ut i konsolen defineras under kommandot
+samt källkoden längst upp i respektive språks exempel. Samma mönster kan även användas
+för att köra exemplen definerade i bilagrona 5 och 6. För att istället för att köra
+koden utföra lexikalanalys, syntaxanalys eller kompilation ersätts nyckelordet "`run`"
+i kommandot respektive nyckelord för den önskade handlingen. Det vill säga "`tokenize`",
+"`parse`" eller "`compile`".
+
+#### Engelska
+
+```
+function entry() {
+  print("Hello, World!")
+}
+```
+
+```bash
+$ gyarb run --language en src/examples/hello_world/hellow_world.en.gy
+Hello, World!
+```
+
+#### Svenska
+
+```
+funktion ingång() {
+  skriv("Hej, Världen!")
+}
+```
+
+```bash
+$ gyarb run --language se src/examples/hello_world/hellow_world.se.gy
+Hej, Världen!
+```
+
+#### Tyska
+
+```
+funktion eingang() {
+  schreiben("Hallo, Welt!")
+}
+```
+
+```bash
+$ gyarb run --language de src/examples/hello_world/hellow_world.de.gy
+Hallo, Welt!
+```
+
+#### Franska
+
+```
+function entrée() {
+  écrivez("Bonjour le monde!")
+}
+```
+
+```bash
+$ gyarb run --language fr src/examples/hello_world/hellow_world.fr.gy
+Bonjour le monde!
+```
 
 # Diskussion och Slutsats
 
@@ -826,7 +896,19 @@ kontext skulle då kunna ändra även nyckelordens korrekta form beroende på fu
 
 ## Globala målen och språkets användbarhet
 
-Skriv!
+Det fjärde globala målet, säkerställandet av en inkluderande och
+likvärdig utbildning av god kvalitet och främja livslångt lärande
+för alla är det framföralla mål som detta projekt utvecklades i åtanke
+med. Projektet utvecklades för att vara lättförståeligt och användbart
+i flera olika språk, dock utan någon som helst kvantitativ bakgrund
+till hur man gör ett programmeringsspråk eller användargränssnitt
+lättförståeligt eller effektivt översättningsbart.
+
+Detta går att koppla till ovanstående rubrik [läsbarhet](#läsbarhet)
+då det är mycket möjligt att ett programmeringsspråk som skrivs i
+ens modersmål inte är enklare utan kontraintuitivt svårare på grund
+av det stora antal redan etablerade lärare, programmerare och
+material där programmeringsspråket som används är engelska baserat.
 
 ## Vidare utveckling
 
@@ -852,6 +934,8 @@ olika skriftspråksvarianter.
 | Delmängd/Nodtyp | Operation | Gruppering | Uttryck |
 | --------------- | --------- | ---------- | ------- |
 | | ![operation](paper/data/operation.svg) | ![gruppering](paper/data/gruppering.svg) | ![uttryck](paper/data/uttryck.svg) |
+
+\pagebreak
 
 ## Bilaga 2. Full lexikal EBNF specifikation av programmeringsspråket
 
@@ -899,6 +983,8 @@ identifierare       = unicode_bokstav
                     |  unicode_symbol
                     |  unicode_nummer)*
 ```
+
+\pagebreak
 
 ## Bilaga 3. Full syntax EBNF specifikation av programmeringsspråket
 
@@ -951,42 +1037,9 @@ funktions_deklaration = funktion_nyckelord
 
 program               = funktions_deklaration*
 ```
+\pagebreak
 
-## Bilaga 4. Exempelprogram "Hej, Världen!"
-
-#### Engelska:
-
-```
-function entry() {
-  print("Hello, World!")
-}
-```
-
-#### Svenska:
-
-```
-funktion ingång() {
-  skriv("Hej, Världen!")
-}
-```
-
-#### Tyska:
-
-```
-funktion eingang() {
-  schreiben("Hallo, Welt!")
-}
-```
-
-#### Franska:
-
-```
-function entrée() {
-  écrivez("Bonjour le monde!")
-}
-```
-
-## Bilaga 5. Exempelprogram uttryck
+## Bilaga 4. Exempelprogram uttryck
 
 #### Engelska:
 
@@ -1020,7 +1073,9 @@ function entrée() {
 }
 ```
 
-## Bilaga 6. Exempelprogram satser
+\pagebreak
+
+## Bilaga 5. Exempelprogram satser
 
 #### Engelska:
 
