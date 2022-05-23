@@ -1,0 +1,13 @@
+funktion skriv(text) {
+  #[js] console.log(text);
+}
+
+// Ignorera det översta
+
+funktion ingång() {
+  skriv("Hej, Världen!")
+}
+
+{
+  ingång()
+}

@@ -131,7 +131,13 @@ språk är assembler [@nationalencyklopedin_assemblersprak] vilket är ett
 samlingsnamn för språk där maskininstruktioner är översatta till ord och värden
 för olika hårdvara. Till skillnad från lågnivåspråk är högnivåspråk mycket enklare
 för utvecklaren att skriva samt förstå och är de vanligast använda [@tiobe_index_2021;
-@pypl_popularity_of_programming_language_2021].
+@pypl_popularity_of_programming_language_2021]. Denna skillnad i användarvänlighet
+mellan låg- och högnivåspråk har gjort att högnivåspråk skiljer sig i större grad
+från varandra i de abstraktioner och koncept som används vilket gör det svårt att
+definera någon specifik anledning till högnivåspråks användarvänlighet. Exempelvis
+finns olika programmeringsmetoder så som funktionell och objektorienterad
+programmering som kan hjälpa strukturera program [@wikipedia_object_oriented_programming;
+@wikipedia_functional_programming];
 
 ## En global efterfrågan för programmerare
 
@@ -374,10 +380,12 @@ kompileras eller interpreteras.
 # Syfte och Frågeställning
 
 Målet med projektet är att utveckla ett prototypprogram samt specifikation av
-ett programmeringsspråk. Denna prototyp skall vara översättningsbart och
-lättförståeligt på olika språk. Syftet med detta är för att undersöka möjligheten
+ett programmeringsspråk. Denna prototyp skall vara översättningsbar och
+användbar på olika språk. Syftet med detta är för att undersöka möjligheten
 och olika tillvägagångssätt för att skapa ett programmeringsspråk som går att
-översätta till olika språk och fortfarande vara enkelt att förstå.
+översätta och använda på olika språk, detta för att i vidare forskning möjliggöra
+undersökning av exempelvis hur skriftspråksanpassningar av programmeringsspråk
+skulle kunna främja bland annat inlärning, använding och samarbete.
 
 # Metod
 
